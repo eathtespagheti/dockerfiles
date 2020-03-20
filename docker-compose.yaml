@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: polito
+      POSTGRES_USER: fabio
+
+  adminer:
+    image: adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080

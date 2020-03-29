@@ -3,3 +3,6 @@ version: "3.7"
 services:
   termux:
     image: termux/package-builder
+    command: tail -f /dev/null
+    volumes:
+      - $HOME/Projects:/home/builder/Projects

@@ -6,6 +6,10 @@ services:
     environment:
       POSTGRES_PASSWORD: polito
       POSTGRES_USER: fabio
+    ports:
+      - 5432:5432
+    volumes:
+      - $XDG_DATA_HOME/postgresql/data:/var/lib/postgresql/data
 
   adminer:
     image: adminer

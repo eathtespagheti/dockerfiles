@@ -21,7 +21,7 @@ services:
       - 8080:8080
 
   php-apache:
-    image: php:apache
+    build: .
     depends_on:
       - postgres
     ports:

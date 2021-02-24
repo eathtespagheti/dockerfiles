@@ -26,20 +26,6 @@ services:
       - nextcloud_admin_password
       - postgres_password
 
-  web:
-    image: nginx
-    restart: always
-    ports:
-      - 443:443
-      - 80:80
-      - 5555:55555
-    links:
-      - app
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    volumes_from:
-      - app
-
 volumes:
   db:
   nextcloud:

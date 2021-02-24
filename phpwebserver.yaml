@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  php-apache:
+    image: php:apache
+    ports:
+      - 80:80
+    volumes:
+      - $PROJECTS_FOLDER/phpwebapp:/var/www/html

@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     volumes:
-      - /run/media/fabio/Beta/nextcloud/postgres:/var/lib/postgresql/data
+      - /run/media/fabio/nextcloud/postgres:/var/lib/postgresql/data
     secrets:
       - postgres_password
 
@@ -19,7 +19,7 @@ services:
     ports:
       - 1234:80
     volumes:
-      - /run/media/fabio/Beta/nextcloud/nextcloud-data:/var/www/html
+      - /run/media/fabio/nextcloud/nextcloud-data:/var/www/html
     depends_on:
       - db
     secrets:

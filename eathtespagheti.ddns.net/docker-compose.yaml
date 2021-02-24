@@ -11,6 +11,12 @@ services:
     secrets:
       - postgres_password
 
+  redis:
+    image: redis:alpine
+    restart: always
+    volumes:
+      - /run/media/fabio/nextcloud/redis/redis-data:/var/lib/redis
+
   app:
     image: nextcloud
     restart: always
@@ -22,6 +28,7 @@ services:
       - /run/media/fabio/nextcloud/nextcloud-data:/var/www/html
     depends_on:
       - db
+      - redis
     secrets:
       - nextcloud_admin_password
       - postgres_password

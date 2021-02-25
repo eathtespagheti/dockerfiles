@@ -26,6 +26,7 @@ services:
       - 1234:80
     volumes:
       - /run/media/fabio/nextcloud/nextcloud-data:/var/www/html
+      - ./php.ini:/usr/local/etc/php/conf.d/zzz-custom.ini
     depends_on:
       - db
       - redis

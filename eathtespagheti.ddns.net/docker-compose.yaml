@@ -34,6 +34,16 @@ services:
       - nextcloud_admin_password
       - postgres_password
 
+  smtp:
+    image: namshi/smtp
+    env_file:
+     - .env
+    restart: always
+    volumes:
+     - /etc/letsencrypt/archive/eathtespagheti.ddns.net:/certs
+    ports:
+     - 25:25
+
 volumes:
   db:
   nextcloud:

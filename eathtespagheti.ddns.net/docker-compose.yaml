@@ -45,8 +45,6 @@ services:
     env_file:
      - .env
     restart: always
-    ports:
-      - 25:25
     volumes:
      - /etc/letsencrypt/archive/eathtespagheti.ddns.net:/certs
 

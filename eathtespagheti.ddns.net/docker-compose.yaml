@@ -17,7 +17,7 @@ services:
     volumes:
       - /run/media/fabio/nextcloud/redis/redis-data:/var/lib/redis
 
-  app:
+  nextcloud:
     image: nextcloud
     restart: always
     env_file:
@@ -43,10 +43,6 @@ services:
      - /etc/letsencrypt/archive/eathtespagheti.ddns.net:/certs
     ports:
      - 25:25
-
-volumes:
-  db:
-  nextcloud:
 
 secrets:
   nextcloud_admin_password:

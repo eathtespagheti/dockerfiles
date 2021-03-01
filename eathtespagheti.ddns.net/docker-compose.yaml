@@ -16,20 +16,6 @@ services:
     restart: always
     volumes:
       - /run/media/fabio/nextcloud/redis/redis-data:/var/lib/redis
-
-  nextcloud:
-    image: nextcloud
-    restart: always
-    env_file:
-      - .env
-    volumes:
-      - /run/media/fabio/nextcloud/nextcloud-data:/var/www/html
-    depends_on:
-      - db
-      - redis
-    secrets:
-      - nextcloud_admin_password
-      - postgres_password
   
   nginx:
     image: nginx:alpine
@@ -47,6 +33,22 @@ services:
     restart: always
     volumes:
      - /etc/letsencrypt/archive/eathtespagheti.ddns.net:/certs
+  
+  nextcloud:
+    build: ./custom-nextcloud
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - /run/media/fabio/nextcloud/nextcloud-data:/var/www/html
+    depends_on:
+      - db
+      - redis
+      - nginx
+      - smtp
+    secrets:
+      - nextcloud_admin_password
+      - postgres_password
 
 secrets:
   nextcloud_admin_password:

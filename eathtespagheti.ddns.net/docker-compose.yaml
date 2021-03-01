@@ -22,8 +22,6 @@ services:
     restart: always
     env_file:
       - .env
-    ports:
-      - 1234:80
     volumes:
       - /run/media/fabio/nextcloud/nextcloud-data:/var/www/html
     depends_on:
@@ -32,6 +30,15 @@ services:
     secrets:
       - nextcloud_admin_password
       - postgres_password
+  
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - 443:443
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt/archive/eathtespagheti.ddns.net:/certs
 
   smtp:
     image: namshi/smtp

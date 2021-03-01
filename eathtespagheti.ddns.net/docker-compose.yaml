@@ -26,7 +26,6 @@ services:
       - 1234:80
     volumes:
       - /run/media/fabio/nextcloud/nextcloud-data:/var/www/html
-      - ./php.ini:/usr/local/etc/php/conf.d/zzz-custom.ini
     depends_on:
       - db
       - redis
@@ -41,8 +40,6 @@ services:
     restart: always
     volumes:
      - /etc/letsencrypt/archive/eathtespagheti.ddns.net:/certs
-    ports:
-     - 25:25
 
 secrets:
   nextcloud_admin_password:

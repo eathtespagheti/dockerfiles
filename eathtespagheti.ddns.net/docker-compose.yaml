@@ -36,13 +36,13 @@ services:
   
   nextcloud:
     build: ./custom-nextcloud
+    image: eathtespagheti-nextcloud
     restart: always
     env_file:
       - .env
     volumes:
       - /run/media/fabio/nextcloud/nextcloud-data:/var/www/html
-      - /run/media/fabio/Alpha:/media/Alpha
-      - /run/media/fabio/Beta:/media/Beta
+      - /run/media/fabio/nextcloud/media:/media
     depends_on:
       - db
       - redis

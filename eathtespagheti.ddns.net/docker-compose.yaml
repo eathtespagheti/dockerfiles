@@ -41,6 +41,8 @@ services:
       - .env
     volumes:
       - /run/media/fabio/nextcloud/nextcloud-data:/var/www/html
+      - /run/media/fabio/Alpha:/media/Alpha
+      - /run/media/fabio/Beta:/media/Beta
     depends_on:
       - db
       - redis

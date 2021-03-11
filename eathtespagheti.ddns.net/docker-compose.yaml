@@ -78,10 +78,10 @@ services:
       ND_SCANINTERVAL: 24h
       ND_ENABLETRANSCODINGCONFIG: "true"
       ND_LOGLEVEL: info  
-      ND_BASEURL: "/music"
+      ND_BASEURL: "/navidrome"
       ND_ENABLEGRAVATAR: "true"
     volumes:
-      - $XDG_CONFIG_HOME/navidrome:/data
+      - $XDG_DATA_HOME/navidrome:/data
       - $HOME/Music:/music:ro
   
   transmission:

@@ -54,6 +54,7 @@ services:
   
   navidrome:
     image: deluan/navidrome:latest
+    user: 1000:1000
     depends_on:
       - nginx
     env_file: integration_keys.env # Contains Last.fm and Spotify integration keys
@@ -61,7 +62,8 @@ services:
       ND_SCANINTERVAL: 24h
       ND_ENABLETRANSCODINGCONFIG: "true"
       ND_LOGLEVEL: info  
-      ND_BASEURL: "music"
+      ND_BASEURL: "/music"
+      ND_ENABLEGRAVATAR: "true"
     volumes:
       - $XDG_CONFIG_HOME/navidrome:/data
       - $HOME/Music:/music:ro

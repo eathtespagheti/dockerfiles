@@ -28,11 +28,13 @@ services:
 
   smtp:
     image: namshi/smtp
-    env_file:
-     - .env
     restart: always
+    environment: 
+      - CERTIFICATE_PATH=/certs/fullchain1.pem
+      - KEY_PATH=/certs/privkey1.pem
+      - MAILNAME=eathtespagheti.ddns.net
     volumes:
-     - /etc/letsencrypt/archive/eathtespagheti.ddns.net:/certs
+      - /etc/letsencrypt/archive/eathtespagheti.ddns.net:/certs
   
   nextcloud:
     build: ./custom-nextcloud
@@ -40,6 +42,20 @@ services:
     restart: always
     env_file:
       - .env
+    environment: 
+      - POSTGRES_HOST=db
+      - NEXTCLOUD_ADMIN_PASSWORD_FILE=/run/secrets/nextcloud_admin_password
+      - NEXTCLOUD_ADMIN_USER=fabio
+      - REDIS_HOST=redis
+      - TRUSTED_PROXIES=eathtespagheti.ddns.net
+      - OVERWRITEHOST=eathtespagheti.ddns.net
+      - OVERWRITEPROTOCOL=https
+      - SMTP_HOST=smtp
+      - SMTP_AUTHTYPE=PLAIN
+      - MAIL_FROM_ADDRESS=xnextcloudx
+      - MAIL_DOMAIN=eathtespagheti.ddns.net
+      - PHP_MEMORY_LIMIT=8G
+      - PHP_UPLOAD_LIMIT=16G
     volumes:
       - /run/media/fabio/nextcloud/nextcloud-data:/var/www/html
       - /run/media/fabio/nextcloud/media:/media

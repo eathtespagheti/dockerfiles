@@ -67,9 +67,31 @@ services:
     volumes:
       - $XDG_CONFIG_HOME/navidrome:/data
       - $HOME/Music:/music:ro
+  
+  transmission:
+    image: ghcr.io/linuxserver/transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - USER=fabio
+      - FILE__PASS=/run/secrets/transmission_password
+    volumes:
+      - $XDG_CONFIG_HOME/transmission-daemon:/config
+      - /run/media/fabio/Beta:/run/media/fabio/Beta
+      - /run/media/fabio/Alpha:/run/media/fabio/Alpha
+      - /run/media/fabio/Beta/fabio/Music:/home/fabio/Music
+    ports:
+      - 51413:51413
+      - 51413:51413/udp
+    restart: unless-stopped
+    secrets:
+      - transmission_password
 
 secrets:
   nextcloud_admin_password:
-    file: ./secrets/nextcloud_admin_password # put admin password to this file
+    file: ./secrets/nextcloud_admin_password
   postgres_password:
-    file: ./secrets/postgres_password # put postgresql password to this file
+    file: ./secrets/postgres_password
+  transmission_password:
+    file: ./secrets/transmission_password

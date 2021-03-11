@@ -51,6 +51,20 @@ services:
     secrets:
       - nextcloud_admin_password
       - postgres_password
+  
+  navidrome:
+    image: deluan/navidrome:latest
+    depends_on:
+      - nginx
+    env_file: integration_keys.env # Contains Last.fm and Spotify integration keys
+    environment:
+      ND_SCANINTERVAL: 24h
+      ND_ENABLETRANSCODINGCONFIG: "true"
+      ND_LOGLEVEL: info  
+      ND_BASEURL: "music"
+    volumes:
+      - $XDG_CONFIG_HOME/navidrome:/data
+      - $HOME/Music:/music:ro
 
 secrets:
   nextcloud_admin_password:

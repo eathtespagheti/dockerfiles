@@ -71,6 +71,7 @@ services:
   
   navidrome:
     image: deluan/navidrome:latest
+    restart: always
     user: 1000:1000
     depends_on:
       - nginx
@@ -87,6 +88,7 @@ services:
   
   transmission:
     image: ghcr.io/linuxserver/transmission
+    restart: unless-stopped
     environment:
       - PUID=1000
       - PGID=1000
@@ -101,21 +103,25 @@ services:
     ports:
       - 51413:51413
       - 51413:51413/udp
-    restart: unless-stopped
     secrets:
       - transmission_password
 
   jellyfin:
-    image: jellyfin/jellyfin
+    # privileged: true
+    build: custom-jellyfin
+    image: eathtespagheti/jellyfin
     user: 1000:1000
-    restart: unless-stopped
+    restart: always
+    group_add:
+      - 989 # Render group for HW Acceleration
+    devices: 
+      - /dev/dri/card0:/dev/dri/card0
+      - /dev/dri/renderD128:/dev/dri/renderD128
     volumes:
       - $XDG_CONFIG_HOME/jellyfin:/config
       - jellyfinCache:/cache
       - /run/media/fabio/Alpha/Film:/media
       - /run/media/fabio/Alpha/Serie\ TV:/media2
-    ports: 
-      - 8096:8096
 
 secrets:
   nextcloud_admin_password:

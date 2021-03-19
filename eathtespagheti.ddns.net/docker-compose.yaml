@@ -105,12 +105,17 @@ services:
       - 51413:51413/udp
     secrets:
       - transmission_password
-
+  
   jellyfin:
-    # privileged: true
+    privileged: true
     build: custom-jellyfin
     image: eathtespagheti/jellyfin
-    user: 1000:1000
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - JELLYFIN_PublishedServerUrl=192.168.1.2
+      - LIBVA_DRIVER_NAME=iHD
     restart: always
     group_add:
       - 989 # Render group for HW Acceleration
@@ -121,7 +126,31 @@ services:
       - $XDG_CONFIG_HOME/jellyfin:/config
       - jellyfinCache:/cache
       - /run/media/fabio/Alpha/Film:/media
-      - /run/media/fabio/Alpha/Serie\ TV:/media2
+      - /run/media/fabio/Alpha/SerieTV:/media2
+    restart: unless-stopped
+  
+  ethminer:
+    build: ethminer
+    image: eathtespagheti/ethminer:0.19.0
+    user: 1000:1000
+    restart: always
+    environment: 
+      - SCHEME=stratum
+      - ETHWALLET=0x8bDD239DA91445e4EE2d1e57274C6C8977bd6726
+      - WORKERNAME=BigChameleon
+      - POOLADDRESS=eu1.ethermine.org
+      - POOLPORT=4444
+      - API_PORT=80
+      - RECHECK_TIME=2000
+    volumes: 
+      - /etc/OpenCL:/etc/OpenCL:ro
+      - /usr/lib:/usr/externalibs:ro
+      - /opt/amdgpu:/opt/amdgpu:ro
+      - /opt/amdgpu-pro:/opt/amdgpu-pro:ro
+      - /usr/share/libdrm:/usr/share/libdrm:ro
+    devices: 
+      - /dev/dri/card1:/dev/dri/card1
+      - /dev/dri/renderD129:/dev/dri/renderD129
 
 secrets:
   nextcloud_admin_password:

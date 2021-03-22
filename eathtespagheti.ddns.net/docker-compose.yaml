@@ -128,6 +128,8 @@ services:
       - /run/media/fabio/Alpha/Film:/media
       - /run/media/fabio/Alpha/SerieTV:/media2
     restart: unless-stopped
+    depends_on: 
+      - nginx
   
   ethminer:
     build: ethminer
@@ -151,6 +153,22 @@ services:
     devices: 
       - /dev/dri/card1:/dev/dri/card1
       - /dev/dri/renderD129:/dev/dri/renderD129
+  
+  bitwarden:
+    image: bitwardenrs/server:alpine
+    restart: always
+    volumes: 
+      - $XDG_DATA_HOME/bitwarden:/data
+    ports: 
+      - 8080:80
+    user: 1000:1000
+    depends_on: 
+      - nginx
+    environment: 
+      - DOMAIN=https://eathtespagheti.ddns.net/bitwarden
+      - SMTP_HOST=smtp
+      - SMTP_FROM=bitwarden@eathtespagheti.ddns.net
+      - SMTP_SSL=false
 
 secrets:
   nextcloud_admin_password:

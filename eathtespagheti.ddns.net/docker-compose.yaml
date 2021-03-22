@@ -60,7 +60,8 @@ services:
       - PHP_UPLOAD_LIMIT=16G
     volumes:
       - /run/media/fabio/nextcloud/nextcloud-data:/var/www/html
-      - /run/media/fabio/nextcloud/media:/media
+      - /run/media/fabio/Alpha:/media/Alpha
+      - /run/media/fabio/Beta:/media/Beta
     depends_on:
       - db
       - redis

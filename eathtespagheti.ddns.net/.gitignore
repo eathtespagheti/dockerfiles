@@ -1,2 +1,3 @@
 secrets/
 integration_keys.env
+.cloudflareToken

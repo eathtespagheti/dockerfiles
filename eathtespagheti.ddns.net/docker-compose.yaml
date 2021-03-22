@@ -168,6 +168,15 @@ services:
       - SMTP_HOST=smtp
       - SMTP_FROM=bitwarden@eathtespagheti.ddns.net
       - SMTP_SSL=false
+  
+  cloudflare-ddns:
+    image: oznu/cloudflare-ddns:latest
+    restart: always
+    env_file: 
+      - .cloudflareToken
+    environment:
+      - ZONE=eathtespagheti.eu
+      - PROXIED=true
 
 secrets:
   nextcloud_admin_password:

@@ -13,7 +13,6 @@ services:
 
   redis:
     image: redis:alpine
-    user: 1000:1000
     restart: always
   
   nginx:

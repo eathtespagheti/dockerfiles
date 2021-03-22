@@ -15,8 +15,6 @@ services:
     image: redis:alpine
     user: 1000:1000
     restart: always
-    volumes:
-      - /run/media/fabio/nextcloud/redis/redis-data:/var/lib/redis
   
   nginx:
     image: nginx:alpine

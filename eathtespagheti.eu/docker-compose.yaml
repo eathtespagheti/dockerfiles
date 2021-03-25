@@ -125,6 +125,7 @@ services:
       - jellyfinCache:/cache
       - /run/media/fabio/Alpha/Film:/media
       - /run/media/fabio/Alpha/SerieTV:/media2
+      - $HOME/Music:/music
     restart: unless-stopped
     depends_on: 
       - nginx

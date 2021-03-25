@@ -1,6 +1,7 @@
 version: "3.8"
 
 services:
+  # Databases
   db:
     image: postgres:alpine
     restart: always
@@ -11,10 +12,27 @@ services:
     secrets:
       - postgres_password
 
+  # System Management/Optimization
   redis:
     image: redis:alpine
     restart: always
   
+  watchtower:
+    image: containrrr/watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  
+  cloudflare-ddns:
+    image: oznu/cloudflare-ddns:latest
+    restart: always
+    env_file: 
+      - .cloudflareToken
+    environment:
+      - ZONE=eathtespagheti.eu
+      - PROXIED=true
+  
+  # Server
   nginx:
     image: nginx:alpine
     restart: always
@@ -35,6 +53,7 @@ services:
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
   
+  # Cloud
   nextcloud:
     build: ./custom-nextcloud
     image: eathtespagheti-nextcloud
@@ -67,6 +86,7 @@ services:
       - nextcloud_admin_password
       - postgres_password
   
+  # Media
   navidrome:
     image: deluan/navidrome:latest
     restart: always
@@ -83,27 +103,7 @@ services:
     volumes:
       - $XDG_DATA_HOME/navidrome:/data
       - $HOME/Music:/music:ro
-  
-  transmission:
-    image: ghcr.io/linuxserver/transmission
-    restart: unless-stopped
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Amsterdam
-      - USER=fabio
-      - FILE__PASS=/run/secrets/transmission_password
-    volumes:
-      - $XDG_CONFIG_HOME/transmission-daemon:/config
-      - /run/media/fabio/Beta:/run/media/fabio/Beta
-      - /run/media/fabio/Alpha:/run/media/fabio/Alpha
-      - /run/media/fabio/Beta/fabio/Music:/home/fabio/Music
-    ports:
-      - 51413:51413
-      - 51413:51413/udp
-    secrets:
-      - transmission_password
-  
+
   jellyfin:
     privileged: true
     build: custom-jellyfin
@@ -129,6 +129,27 @@ services:
     restart: unless-stopped
     depends_on: 
       - nginx
+  
+  # Dockerized softwares & utilities
+  transmission:
+    image: ghcr.io/linuxserver/transmission
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - USER=fabio
+      - FILE__PASS=/run/secrets/transmission_password
+    volumes:
+      - $XDG_CONFIG_HOME/transmission-daemon:/config
+      - /run/media/fabio/Beta:/run/media/fabio/Beta
+      - /run/media/fabio/Alpha:/run/media/fabio/Alpha
+      - /run/media/fabio/Beta/fabio/Music:/home/fabio/Music
+    ports:
+      - 51413:51413
+      - 51413:51413/udp
+    secrets:
+      - transmission_password
   
   ethminer:
     build: ethminer
@@ -168,21 +189,6 @@ services:
       - SMTP_HOST=smtp
       - SMTP_FROM=bitwarden@eathtespagheti.eu
       - SMTP_SSL=false
-  
-  cloudflare-ddns:
-    image: oznu/cloudflare-ddns:latest
-    restart: always
-    env_file: 
-      - .cloudflareToken
-    environment:
-      - ZONE=eathtespagheti.eu
-      - PROXIED=true
-
-  watchtower:
-    image: containrrr/watchtower
-    restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
 
 secrets:
   nextcloud_admin_password:

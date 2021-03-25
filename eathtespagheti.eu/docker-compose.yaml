@@ -11,6 +11,24 @@ services:
       - /run/media/fabio/nextcloud/postgres:/var/lib/postgresql/data
     secrets:
       - postgres_password
+  
+  mariadb:
+    image: mariadb:latest
+    restart: always
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+    command: mysqld --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=50
+    volumes:
+      - /run/media/fabio/nextcloud/mariadb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql-root
+      - MYSQL_PASSWORD_FILE=/run/secrets/mysql-user
+      - MYSQL_DATABASE=photoprism
+      - MYSQL_USER=photoprism
+    secrets:
+      - mysql-root
+      - mysql-user
 
   # System Management/Optimization
   redis:
@@ -129,6 +147,43 @@ services:
     restart: unless-stopped
     depends_on: 
       - nginx
+    
+  photoprism:
+    image: photoprism/photoprism:latest
+    # restart: unless-stopped
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+    env_file:
+      - secrets/photoprism.env
+    environment:
+      - PHOTOPRISM_HTTP_PORT=80
+      - PHOTOPRISM_HTTP_COMPRESSION=gzip
+      - PHOTOPRISM_DEBUG=false
+      - PHOTOPRISM_PUBLIC=false
+      - PHOTOPRISM_READONLY=false
+      - PHOTOPRISM_EXPERIMENTAL=true
+      - PHOTOPRISM_DISABLE_WEBDAV=false
+      - PHOTOPRISM_DISABLE_SETTINGS=false
+      - PHOTOPRISM_DISABLE_TENSORFLOW=false
+      - PHOTOPRISM_DARKTABLE_PRESETS=false
+      - PHOTOPRISM_DETECT_NSFW=true
+      - PHOTOPRISM_UPLOAD_NSFW=true
+      - PHOTOPRISM_DATABASE_DRIVER=mysql
+      - PHOTOPRISM_DATABASE_SERVER=mariadb:3306
+      - PHOTOPRISM_DATABASE_NAME=photoprism
+      - PHOTOPRISM_DATABASE_USER=photoprism
+      - PHOTOPRISM_SITE_URL=https://photos.eathtespagheti.eu
+      - PHOTOPRISM_SITE_TITLE=PhotoPrism
+      - PHOTOPRISM_SITE_CAPTION=Browse Your Life
+      - PHOTOPRISM_SITE_DESCRIPTION=xPHOTOSx
+      - PHOTOPRISM_SITE_AUTHOR=eathtespagheti
+    user: 1000:1000
+    depends_on: 
+      - mariadb
+    volumes:
+      - /run/media/fabio/Beta/fabio/Pictures:/photoprism/originals
+      - /run/media/fabio/Beta/fabio/nextcloud/photoprism:/photoprism/storage
   
   # Dockerized softwares & utilities
   transmission:
@@ -184,7 +239,7 @@ services:
       - 8080:80
     depends_on: 
       - nginx
-    environment: 
+    environment:
       - DOMAIN=https://eathtespagheti.eu/bitwarden
       - SMTP_HOST=smtp
       - SMTP_FROM=bitwarden@eathtespagheti.eu
@@ -195,6 +250,10 @@ secrets:
     file: ./secrets/nextcloud_admin_password
   postgres_password:
     file: ./secrets/postgres_password
+  mysql-root:
+    file: ./secrets/mysql-root
+  mysql-user:
+    file: ./secrets/mysql-user
   transmission_password:
     file: ./secrets/transmission_password
 

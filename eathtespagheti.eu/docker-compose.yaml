@@ -178,6 +178,12 @@ services:
       - ZONE=eathtespagheti.eu
       - PROXIED=true
 
+  watchtower:
+    image: containrrr/watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
 secrets:
   nextcloud_admin_password:
     file: ./secrets/nextcloud_admin_password

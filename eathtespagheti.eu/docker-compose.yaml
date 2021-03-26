@@ -13,7 +13,7 @@ services:
       - postgres_password
   
   mariadb:
-    image: mariadb:latest
+    image: mariadb
     restart: always
     security_opt:
       - seccomp:unconfined
@@ -42,7 +42,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
   
   cloudflare-ddns:
-    image: oznu/cloudflare-ddns:latest
+    image: oznu/cloudflare-ddns
     restart: always
     env_file: 
       - .cloudflareToken
@@ -52,6 +52,7 @@ services:
   
   # Server
   nginx:
+    hostname: nginx
     image: nginx:alpine
     restart: always
     ports:
@@ -74,6 +75,7 @@ services:
   
   # Cloud
   nextcloud:
+    hostname: xNextcloudx
     build: ./custom-nextcloud
     image: eathtespagheti-nextcloud
     restart: always
@@ -107,7 +109,8 @@ services:
   
   # Media
   navidrome:
-    image: deluan/navidrome:latest
+    hostname: Navidrome
+    image: deluan/navidrome
     restart: always
     user: 1000:1000
     depends_on:
@@ -123,6 +126,7 @@ services:
       - $HOME/Music:/music:ro
 
   jellyfin:
+    hostname: Jellyfin
     privileged: true
     build: custom-jellyfin
     image: eathtespagheti/jellyfin
@@ -149,7 +153,8 @@ services:
       - nginx
     
   photoprism:
-    image: photoprism/photoprism:latest
+    hostname: Photoprism
+    image: photoprism/photoprism
     restart: unless-stopped
     security_opt:
       - seccomp:unconfined
@@ -187,6 +192,7 @@ services:
   
   # Dockerized softwares & utilities
   transmission:
+    hostname: Transmission
     image: ghcr.io/linuxserver/transmission
     restart: unless-stopped
     environment:
@@ -231,6 +237,7 @@ services:
       - /dev/dri/renderD129:/dev/dri/renderD129
   
   bitwarden:
+    hostname: Bitwarden
     image: bitwardenrs/server:alpine
     user: 1000:1000
     restart: always

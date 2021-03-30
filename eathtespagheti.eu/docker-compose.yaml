@@ -86,7 +86,7 @@ services:
       - NEXTCLOUD_ADMIN_PASSWORD_FILE=/run/secrets/nextcloud_admin_password
       - NEXTCLOUD_ADMIN_USER=fabio
       - REDIS_HOST=redis
-      - NEXTCLOUD_TRUSTED_DOMAINS=localhost 192.168.1.2 cloud.eathtespagheti.eu direct.eathtespagheti.eu
+      - NEXTCLOUD_TRUSTED_DOMAINS=localhost 192.168.1.* cloud.eathtespagheti.eu direct.eathtespagheti.eu
       - OVERWRITEPROTOCOL=https
       - SMTP_HOST=smtp
       - SMTP_AUTHTYPE=PLAIN
@@ -134,7 +134,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Amsterdam
-      - JELLYFIN_PublishedServerUrl=192.168.1.2
+      - JELLYFIN_PublishedServerUrl=https://videos.eathtespagheti.eu
       - LIBVA_DRIVER_NAME=iHD
     restart: always
     group_add:
@@ -218,7 +218,7 @@ services:
     build: ethminer
     image: eathtespagheti/ethminer:0.19.0
     user: 1000:1000
-    restart: always
+    restart: unless-stopped
     environment: 
       - SCHEME=stratum
       - ETHWALLET=0x8bDD239DA91445e4EE2d1e57274C6C8977bd6726

@@ -149,6 +149,7 @@ services:
       - /run/media/fabio/Alpha/SerieTV:/media2
       - /run/media/fabio/Alpha/torrents:/media3
       - $HOME/Music:/music
+      - /tmp/jellyfin:/config/data/transcodes
     restart: unless-stopped
     depends_on: 
       - nginx

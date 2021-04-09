@@ -143,7 +143,7 @@ services:
       - /dev/dri/card0:/dev/dri/card0
       - /dev/dri/renderD128:/dev/dri/renderD128
     volumes:
-      - $XDG_CONFIG_HOME/jellyfin:/config
+      - /run/media/fabio/Beta/fabio/.config/jellyfin:/config
       - jellyfinCache:/cache
       - /run/media/fabio/Alpha/Film:/media
       - /run/media/fabio/Alpha/SerieTV:/media2

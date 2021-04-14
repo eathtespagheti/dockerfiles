@@ -87,6 +87,7 @@ services:
       - NEXTCLOUD_ADMIN_USER=fabio
       - REDIS_HOST=redis
       - NEXTCLOUD_TRUSTED_DOMAINS=localhost 192.168.1.* cloud.eathtespagheti.eu direct.eathtespagheti.eu
+      - TRUSTED_PROXIES=192.168.1.* cloud.eathtespagheti.eu direct.eathtespagheti.eu
       - OVERWRITEPROTOCOL=https
       - SMTP_HOST=smtp
       - SMTP_AUTHTYPE=PLAIN

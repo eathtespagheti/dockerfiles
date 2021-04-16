@@ -264,6 +264,20 @@ services:
       - SMTP_HOST=smtp
       - SMTP_FROM=bitwarden@eathtespagheti.eu
       - SMTP_SSL=false
+  
+  collabora:
+    hostname: Collabora
+    image: collabora/code
+    restart: always
+    depends_on: 
+      - nginx
+    ports: 
+      - 9980:9980
+    env_file: secrets/collabora.env
+    environment: 
+      - username=fabio
+      - server_name=collabora.eathtespagheti.eu
+      - domain=cloud.eathtespagheti.eu
 
 secrets:
   nextcloud_admin_password:

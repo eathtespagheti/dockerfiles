@@ -109,23 +109,17 @@ services:
       - postgres_password
   
   # Media
-  navidrome:
-    hostname: Navidrome
-    image: deluan/navidrome
+  lms:
+    hostname: lms
+    image: epoupon/lms
     restart: always
     user: 1000:1000
     ports:
-      - 10001:4533
+      - 10001:5082
     depends_on:
       - nginx
-    env_file: integration_keys.env # Contains Last.fm and Spotify integration keys
-    environment:
-      - ND_SCANINTERVAL=24h
-      - ND_ENABLETRANSCODINGCONFIG=true
-      - ND_LOGLEVEL=info
-      - ND_ENABLEGRAVATAR=true
     volumes:
-      - $XDG_DATA_HOME/navidrome:/data
+      - $XDG_DATA_HOME/lms:/var/lms
       - $HOME/Music:/music:ro
 
   jellyfin:

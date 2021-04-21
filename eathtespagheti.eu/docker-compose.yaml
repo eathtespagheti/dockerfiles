@@ -8,7 +8,7 @@ services:
     env_file:
       - .env
     volumes:
-      - /run/media/fabio/nextcloud/postgres:/var/lib/postgresql/data
+      - /run/media/fabio/Cloud/postgres:/var/lib/postgresql/data
     secrets:
       - postgres_password
   
@@ -20,7 +20,7 @@ services:
       - apparmor:unconfined
     command: mysqld --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=50
     volumes:
-      - /run/media/fabio/nextcloud/mariadb:/var/lib/mysql
+      - /run/media/fabio/Cloud/mariadb:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql-root
       - MYSQL_PASSWORD_FILE=/run/secrets/mysql-user
@@ -96,7 +96,7 @@ services:
       - PHP_MEMORY_LIMIT=8G
       - PHP_UPLOAD_LIMIT=16G
     volumes:
-      - /run/media/fabio/nextcloud/nextcloud-data:/var/www/html
+      - /run/media/fabio/Cloud/nextcloud-data:/var/www/html
       - /run/media/fabio/Alpha:/media/Alpha
       - /run/media/fabio/Beta:/media/Beta
     depends_on:

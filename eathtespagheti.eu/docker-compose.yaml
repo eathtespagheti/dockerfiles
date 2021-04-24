@@ -191,7 +191,7 @@ services:
       - mariadb
     volumes:
       - /run/media/fabio/Beta/fabio/Pictures:/photoprism/originals
-      - /run/media/fabio/Beta/fabio/nextcloud/photoprism:/photoprism/storage
+      - /run/media/fabio/Cloud/photoprism:/photoprism/storage
   
   # Dockerized softwares & utilities
 

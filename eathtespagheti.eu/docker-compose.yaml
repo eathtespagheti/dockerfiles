@@ -232,7 +232,7 @@ services:
       - /run/media/fabio/Alpha:/run/media/fabio/Alpha
       - /run/media/fabio/Beta/fabio/Music:/home/fabio/Music
     ports:
-      - 10004:9091
+      - 9091:9091
       - 51413:51413
       - 51413:51413/udp
     secrets:

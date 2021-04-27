@@ -303,6 +303,22 @@ services:
       - server_name=collabora.eathtespagheti.eu
       - domain=cloud.eathtespagheti.eu
 
+  yacht:
+    hostname: Yacht
+    image: selfhostedpro/yacht
+    restart: unless-stopped
+    environment: 
+      - PUID=1000
+      - GUID=1000
+      - ADMIN_EMAIL=sussarellu98@gmail.com
+      - COMPOSE_DIR=/compose
+    ports: 
+      - 10004:8000
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+      - $XDG_CONFIG_HOME/yacht:/config
+      - $PROJECTS_FOLDER/dockercomposer:/compose
+
 secrets:
   nextcloud_admin_password:
     file: ./secrets/nextcloud_admin_password

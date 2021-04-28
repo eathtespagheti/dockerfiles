@@ -1,0 +1,4 @@
+acl "internal" {
+    192.168.1.0/24; # Local Area Network.
+    127.0.0.1; # Localhost
+};

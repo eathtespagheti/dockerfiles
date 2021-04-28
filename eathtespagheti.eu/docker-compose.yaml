@@ -220,6 +220,8 @@ services:
     image: mikenye/picard
     ports:
       - 5800:5800
+    environment:
+      - DISPLAY_HEIGHT=950
     volumes:
       - $XDG_CONFIG_HOME/picard:/config:rw
       - /run/media/fabio/Beta/fabio/Music:/storage:rw

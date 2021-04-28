@@ -14,7 +14,7 @@ services:
   
   mariadb:
     image: mariadb
-    restart: always
+    restart: unless-stopped
     security_opt:
       - seccomp:unconfined
       - apparmor:unconfined
@@ -112,7 +112,7 @@ services:
   lms:
     hostname: lms
     image: epoupon/lms
-    restart: always
+    restart: unless-stopped
     user: 1000:1000
     ports:
       - 10001:5082
@@ -125,6 +125,7 @@ services:
   jellyfin:
     hostname: Jellyfin
     privileged: true
+    restart: unless-stopped
     build: custom-jellyfin
     image: eathtespagheti/jellyfin
     ports:
@@ -135,7 +136,6 @@ services:
       - TZ=Europe/Amsterdam
       - JELLYFIN_PublishedServerUrl=https://videos.eathtespagheti.eu
       - LIBVA_DRIVER_NAME=iHD
-    restart: always
     group_add:
       - 989 # Render group for HW Acceleration
     devices: 
@@ -218,6 +218,7 @@ services:
 
   picard:
     image: mikenye/picard
+    restart: unless-stopped
     ports:
       - 5800:5800
     environment:
@@ -294,7 +295,7 @@ services:
   collabora:
     hostname: Collabora
     image: collabora/code
-    restart: always
+    restart: unless-stopped
     depends_on: 
       - nginx
     ports: 
@@ -308,7 +309,7 @@ services:
   yacht:
     hostname: Yacht
     image: selfhostedpro/yacht
-    restart: unless-stopped
+    restart: always
     environment: 
       - PUID=1000
       - GUID=1000

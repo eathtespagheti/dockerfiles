@@ -109,6 +109,22 @@ services:
       - postgres_password
   
   # Media
+
+  calibre:
+    hostname: Calibre
+    image: ghcr.io/linuxserver/calibre-web
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - DOCKER_MODS=linuxserver/calibre-web:calibre
+    volumes:
+      - $XDG_DATA_HOME/calibre-web:/config
+      - /run/media/fabio/Beta/fabio/Documents/Libri:/books
+    ports:
+      - 10007:8083
+    restart: unless-stopped
+
   lms:
     hostname: lms
     image: epoupon/lms

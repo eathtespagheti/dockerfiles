@@ -60,6 +60,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - /var/www/letsencrypt:/var/www/letsencrypt:ro
+      - /var/cache/pacman/pkg:/pkgcache:ro
 
   smtp:
     image: namshi/smtp

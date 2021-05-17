@@ -302,6 +302,15 @@ services:
     devices: 
       - /dev/dri/card1:/dev/dri/card1
       - /dev/dri/renderD129:/dev/dri/renderD129
+
+  ninjarig:
+    hostname: BigChameleon
+    build: ninjarig
+    image: eathtespagheti/ninjarig
+    user: 1000:1000
+    volumes: 
+      - ./ninjarig/config.json:/ninjarig/config.json
+    restart: always
   
   bitwarden:
     hostname: Bitwarden

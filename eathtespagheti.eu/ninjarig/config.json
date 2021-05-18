@@ -19,8 +19,8 @@
     "log-file": null,
     "pools": [
         {
-            "url": "pool.ninjanode.net:3037",
-            "user": "Ninja13MxSD3oigVthnMBDNDRnXZcUi6b2hNovfHq7BGErHyWvPP1mbdMTHMbkSNE2dU7p78n43a2Lg32DHC5xerWgjWM4dPHYS3R",
+            "url": "fastpool.xyz:3013",
+            "user": "Ninja13MxSD3oigVthnMBDNDRnXZcUi6b2hNovfHq7BGErHyWvPP1mbdMTHMbkSNE2dU7p78n43a2Lg32DHC5xerWgjWM4dPHYS3R@bigchameleon",
             "pass": "bigchameleon",
             "rig-id": null,
             "nicehash": false,

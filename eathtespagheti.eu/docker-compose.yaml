@@ -307,6 +307,8 @@ services:
     hostname: BigChameleon
     build: ninjarig
     image: eathtespagheti/ninjarig
+    ports: 
+      - 10008:80
     user: 1000:1000
     volumes: 
       - ./ninjarig/config.json:/ninjarig/config.json

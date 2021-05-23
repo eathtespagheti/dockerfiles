@@ -277,8 +277,7 @@ services:
   
   ethminer:
     hostname: BigChameleon
-    build: ethminer
-    image: eathtespagheti/ethminer:0.19.0
+    image: eathtespagheti/ethminer
     user: 1000:1000
     restart: always
     ports:

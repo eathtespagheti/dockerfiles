@@ -142,7 +142,6 @@ services:
     hostname: Jellyfin
     privileged: true
     restart: unless-stopped
-    build: custom-jellyfin
     image: eathtespagheti/jellyfin
     ports:
       - 10002:8096

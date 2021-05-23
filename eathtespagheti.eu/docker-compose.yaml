@@ -75,8 +75,7 @@ services:
   # Cloud
   nextcloud:
     hostname: xNextcloudx
-    build: ./custom-nextcloud
-    image: eathtespagheti-nextcloud
+    image: eathtespagheti/nextcloud
     restart: always
     ports:
       - 10000:80

@@ -284,7 +284,7 @@ services:
       - 10005:80
     environment: 
       - SCHEME=stratum
-      - ETHWALLET=0x8bDD239DA91445e4EE2d1e57274C6C8977bd6726
+      - ETHWALLET=0xfd115ee403a730506419ed9b29d02f74d6421003
       - WORKERNAME=BigChameleon
       - POOLADDRESS=eu1.ethermine.org
       - POOLPORT=4444

@@ -143,8 +143,7 @@ services:
     privileged: true
     restart: unless-stopped
     image: eathtespagheti/jellyfin
-    ports:
-      - 10002:8096
+    network_mode: host
     environment:
       - PUID=1000
       - PGID=1000
@@ -284,7 +283,7 @@ services:
       - 10005:80
     environment: 
       - SCHEME=stratum
-      - ETHWALLET=0xfd115ee403a730506419ed9b29d02f74d6421003
+      - USERNAME=0xfd115ee403a730506419ed9b29d02f74d6421003
       - WORKERNAME=BigChameleon
       - POOLADDRESS=eu1.ethermine.org
       - POOLPORT=4444

@@ -282,13 +282,14 @@ services:
     ports:
       - 10005:80
     environment: 
-      - SCHEME=stratum
-      - USERNAME=0xfd115ee403a730506419ed9b29d02f74d6421003
-      - WORKERNAME=BigChameleon
-      - POOLADDRESS=eu1.ethermine.org
-      - POOLPORT=4444
+      - SCHEME=stratum+tcp
+      - USERNAME=BigChameleon
+      - WORKERNAME=BigChameleon.001
+      - POOLADDRESS=ethash.poolbinance.com
+      - POOLPORT=1800
       - API_PORT=80
       - RECHECK_TIME=2000
+      - PASSWORD=123456
     volumes: 
       - /etc/OpenCL:/etc/OpenCL:ro
       - /usr/lib:/usr/externalibs:ro

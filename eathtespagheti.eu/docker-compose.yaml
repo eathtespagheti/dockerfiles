@@ -282,7 +282,7 @@ services:
     ports:
       - 10005:80
     environment: 
-      - SCHEME=stratum+tcp
+      - SCHEME=stratum1+tcp
       - USERNAME=BigChameleon
       - WORKERNAME=BigChameleon.001
       - POOLADDRESS=ethash.poolbinance.com

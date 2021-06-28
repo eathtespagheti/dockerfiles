@@ -169,7 +169,7 @@ services:
     
   photoprism:
     hostname: Photoprism
-    image: photoprism/photoprism
+    image: thielepaul/photoprism:db-api
     restart: unless-stopped
     ports:
       - 10003:80

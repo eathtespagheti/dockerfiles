@@ -209,6 +209,14 @@ services:
   
   # Dockerized softwares & utilities
 
+  ofelia:
+    image: mcuadros/ofelia:latest
+    container_name: ofelia
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./ofelia/jobs.ini:/etc/ofelia/config.ini
+
   bind9:
     image: internetsystemsconsortium/bind9:9.16
     hostname: bind9

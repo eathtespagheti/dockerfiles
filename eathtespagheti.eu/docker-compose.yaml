@@ -209,9 +209,15 @@ services:
   
   # Dockerized softwares & utilities
 
+  kms:
+    image: teddysun/kms
+    depends_on: 
+      - nginx
+    ports:
+      - 1688:1688
+
   ofelia:
     image: mcuadros/ofelia:latest
-    container_name: ofelia
     restart: unless-stopped
     depends_on: 
       - photoprism

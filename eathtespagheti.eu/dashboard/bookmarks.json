@@ -1,0 +1,43 @@
+{
+    "groups": [{
+            "name": "Dev",
+            "items": [{
+                    "name": "Gitlab",
+                    "url": "https://gitlab.com/eathtespagheti"
+                },
+                {
+                    "name": "Github",
+                    "url": "https://github.com/eathtespagheti"
+                }
+            ]
+        },
+        {
+            "name": "Social Networks",
+            "items": [{
+                    "name": "Facebook",
+                    "url": "https://www.facebook.com/profile.php?id=100009559103187"
+                },
+                {
+                    "name": "Twitter",
+                    "url": "https://twitter.com/Lemmy97029416"
+                },
+                {
+                    "name": "Reddit",
+                    "url": "https://www.reddit.com/user/Fabi0_Z"
+                }
+            ]
+        },
+        {
+            "name": "Wikis",
+            "items": [{
+                    "name": "Wikipedia",
+                    "url": "https://en.wikipedia.org/wiki/Special:Contributions/Eathtespagheti"
+                },
+                {
+                    "name": "Arch Linux Wiki",
+                    "url": "https://wiki.archlinux.org/title/Special:Contributions/Fabi0_Z"
+                }
+            ]
+        }
+    ]
+}

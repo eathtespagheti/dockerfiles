@@ -214,7 +214,7 @@ services:
     image: phntxx/dashboard
     restart: unless-stopped
     volumes:
-      - /run/media/fabio/Cloud/dashboard:/app/data
+      - ./dashboard:/app/data:ro
     ports:
       - 10009:8080
     depends_on: 

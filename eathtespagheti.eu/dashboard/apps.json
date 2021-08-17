@@ -1,0 +1,92 @@
+{
+    "categories": [{
+            "name": "Productivity",
+            "items": [{
+                    "name": "Nextcloud",
+                    "displayURL": "cloud.eathtespagheti.eu",
+                    "url": "https://cloud.eathtespagheti.eu",
+                    "icon": "cloud"
+                },
+                {
+                    "name": "Bitwarden",
+                    "displayURL": "secrets.eathtespagheti.eu",
+                    "url": "https://secrets.eathtespagheti.eu",
+                    "icon": "lock"
+                }
+            ]
+        },
+        {
+            "name": "Media",
+            "items": [{
+                    "name": "Jellyfin",
+                    "displayURL": "videos.eathtespagheti.eu",
+                    "url": "https://videos.eathtespagheti.eu",
+                    "icon": "theaters"
+                },
+                {
+                    "name": "Lightweight Music Server",
+                    "displayURL": "music.eathtespagheti.eu",
+                    "url": "https://music.eathtespagheti.eu",
+                    "icon": "album"
+                },
+                {
+                    "name": "Photoprism",
+                    "displayURL": "photos.eathtespagheti.eu",
+                    "url": "https://photos.eathtespagheti.eu",
+                    "icon": "collections"
+                },
+                {
+                    "name": "Calibre",
+                    "displayURL": "books.eathtespagheti.eu",
+                    "url": "https://books.eathtespagheti.eu",
+                    "icon": "auto_stories"
+                }
+            ]
+        },
+        {
+            "name": "Stats",
+            "items": [{
+                    "name": "ethminer",
+                    "displayURL": "ethminer.eathtespagheti.eu",
+                    "url": "https://ethminer.eathtespagheti.eu",
+                    "icon": "link"
+                },
+                {
+                    "name": "netdata",
+                    "displayURL": "stats.eathtespagheti.eu",
+                    "url": "https://stats.eathtespagheti.eu",
+                    "icon": "pie_chart"
+                }
+            ]
+        },
+        {
+            "name": "System Management",
+            "items": [{
+                    "name": "Router",
+                    "displayURL": "routing.eathtespagheti.eu",
+                    "url": "https://routing.eathtespagheti.eu",
+                    "icon": "router"
+                },
+                {
+                    "name": "Yacht",
+                    "displayURL": "devops.eathtespagheti.eu",
+                    "url": "https://devops.eathtespagheti.eu",
+                    "icon": "device_hub"
+                }
+            ]
+        }
+    ],
+    "apps": [{
+            "name": "Dashboard",
+            "displayURL": "dashboadrd.eathtespagheti.eu",
+            "url": "https://dashboadrd.eathtespagheti.eu",
+            "icon": "dashboard"
+        },
+        {
+            "name": "Transmission",
+            "displayURL": "torrents.eathtespagheti.eu",
+            "url": "https://torrents.eathtespagheti.eu/web/",
+            "icon": "sailing"
+        }
+    ]
+}

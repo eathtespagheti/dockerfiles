@@ -1,0 +1,31 @@
+{
+    "themes": [{
+            "label": "Blackboard",
+            "value": 3,
+            "mainColor": "#fffdea",
+            "accentColor": "#5c5c5c",
+            "backgroundColor": "#1a1a1a"
+        },
+        {
+            "label": "Espresso",
+            "value": 5,
+            "mainColor": "#d1b59a",
+            "accentColor": "#4e4e4e",
+            "backgroundColor": "#21211f"
+        },
+        {
+            "label": "Cab",
+            "value": 6,
+            "mainColor": "#1f1f1f",
+            "accentColor": "#424242",
+            "backgroundColor": "#f6d305"
+        },
+        {
+            "label": "Paper",
+            "value": 14,
+            "mainColor": "#4c432e",
+            "accentColor": "#aa9a73",
+            "backgroundColor": "#f8f6f1"
+        }
+    ]
+}

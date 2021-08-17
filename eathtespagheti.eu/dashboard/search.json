@@ -1,0 +1,22 @@
+{
+    "search": {
+        "placeholder": "Search...",
+        "defaultProvider": "https://startpage.com/search?q=",
+        "providers": [{
+                "name": "Duck Duck Go",
+                "url": "https://duckduckgo.com/?q=",
+                "prefix": "/d"
+            },
+            {
+                "name": "Google",
+                "url": "https://google.com/search?q=",
+                "prefix": "/g"
+            },
+            {
+                "name": "Startpage",
+                "url": "https://startpage.com/search?q=",
+                "prefix": "/s"
+            }
+        ]
+    }
+}

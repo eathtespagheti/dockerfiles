@@ -203,11 +203,22 @@ services:
     user: 1000:1000
     depends_on: 
       - mariadb
+      - nginx
     volumes:
       - /run/media/fabio/Beta/fabio/Pictures:/photoprism/originals
       - /run/media/fabio/Cloud/photoprism:/photoprism/storage
   
   # Dockerized softwares & utilities
+
+  dashboard:
+    image: phntxx/dashboard
+    restart: unless-stopped
+    volumes:
+      - /run/media/fabio/Cloud/dashboard:/app/data
+    ports:
+      - 10009:8080
+    depends_on: 
+      - nginx
 
   kms:
     image: teddysun/kms

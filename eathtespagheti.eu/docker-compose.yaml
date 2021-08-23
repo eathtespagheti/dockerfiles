@@ -210,31 +210,22 @@ services:
   
   # Dockerized softwares & utilities
 
-  dashboard:
-    image: phntxx/dashboard
-    restart: unless-stopped
-    volumes:
-      - ./dashboard:/app/data:ro
+  bitwarden:
+    hostname: Bitwarden
+    image: bitwardenrs/server:alpine
+    user: 1000:1000
+    restart: always
     ports:
-      - 10009:8080
+      - 10006:80
+    volumes: 
+      - $XDG_DATA_HOME/bitwarden:/data
     depends_on: 
       - nginx
-
-  kms:
-    image: teddysun/kms
-    depends_on: 
-      - nginx
-    ports:
-      - 1688:1688
-
-  ofelia:
-    image: mcuadros/ofelia:latest
-    restart: unless-stopped
-    depends_on: 
-      - photoprism
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./ofelia/jobs.ini:/etc/ofelia/config.ini
+    environment:
+      - DOMAIN=https://secrets.eathtespagheti.eu
+      - SMTP_HOST=smtp
+      - SMTP_FROM=bitwarden@eathtespagheti.eu
+      - SMTP_SSL=false
 
   bind9:
     image: internetsystemsconsortium/bind9:9.16
@@ -246,6 +237,63 @@ services:
       - 53:53/udp
       - 53:53/tcp
       - 127.0.0.1:953:953/tcp
+
+  collabora:
+    hostname: Collabora
+    image: collabora/code
+    restart: unless-stopped
+    depends_on: 
+      - nginx
+    ports: 
+      - 9980:9980
+    env_file: secrets/collabora.env
+    environment: 
+      - username=fabio
+      - server_name=collabora.eathtespagheti.eu
+      - domain=cloud.eathtespagheti.eu
+
+  dashboard:
+    image: phntxx/dashboard
+    restart: unless-stopped
+    volumes:
+      - ./dashboard:/app/data:ro
+    ports:
+      - 10009:8080
+    depends_on: 
+      - nginx
+
+  ethminer:
+    hostname: BigChameleon
+    image: eathtespagheti/ethminer
+    user: 1000:1000
+    restart: always
+    ports:
+      - 10005:80
+    environment: 
+      - SCHEME=stratum1+tcp
+      - USERNAME=BigChameleon
+      - WORKERNAME=BigChameleon.001
+      - POOLADDRESS=ethash.poolbinance.com
+      - POOLPORT=1800
+      - API_PORT=80
+      - RECHECK_TIME=2000
+      - PASSWORD=123456
+    volumes: 
+      - /etc/OpenCL:/etc/OpenCL:ro
+      - /usr/lib:/usr/externalibs:ro
+      - /opt/amdgpu:/opt/amdgpu:ro
+      - /opt/amdgpu-pro:/opt/amdgpu-pro:ro
+      - /usr/share/libdrm:/usr/share/libdrm:ro
+    devices: 
+      - /dev/dri/card1:/dev/dri/card1
+      - /dev/dri/renderD129:/dev/dri/renderD129
+
+  kms:
+    image: teddysun/kms
+    depends_on: 
+      - nginx
+    ports:
+      - 1688:1688
 
   netdata:
     image: netdata/netdata
@@ -267,6 +315,24 @@ services:
       - SYS_PTRACE
     security_opt: 
       - apparmor=unconfined
+
+  ninjarig:
+    hostname: BigChameleon
+    image: eathtespagheti/ninjarig:latest
+    ports: 
+      - 10008:80
+    volumes: 
+      - ./ninjarig/config.json:/ninjarig/config.json
+    restart: always
+
+  ofelia:
+    image: mcuadros/ofelia:latest
+    restart: unless-stopped
+    depends_on: 
+      - photoprism
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./ofelia/jobs.ini:/etc/ofelia/config.ini
 
   picard:
     image: mikenye/picard
@@ -301,72 +367,6 @@ services:
     secrets:
       - transmission_password
   
-  ethminer:
-    hostname: BigChameleon
-    image: eathtespagheti/ethminer
-    user: 1000:1000
-    restart: always
-    ports:
-      - 10005:80
-    environment: 
-      - SCHEME=stratum1+tcp
-      - USERNAME=BigChameleon
-      - WORKERNAME=BigChameleon.001
-      - POOLADDRESS=ethash.poolbinance.com
-      - POOLPORT=1800
-      - API_PORT=80
-      - RECHECK_TIME=2000
-      - PASSWORD=123456
-    volumes: 
-      - /etc/OpenCL:/etc/OpenCL:ro
-      - /usr/lib:/usr/externalibs:ro
-      - /opt/amdgpu:/opt/amdgpu:ro
-      - /opt/amdgpu-pro:/opt/amdgpu-pro:ro
-      - /usr/share/libdrm:/usr/share/libdrm:ro
-    devices: 
-      - /dev/dri/card1:/dev/dri/card1
-      - /dev/dri/renderD129:/dev/dri/renderD129
-
-  ninjarig:
-    hostname: BigChameleon
-    image: eathtespagheti/ninjarig:latest
-    ports: 
-      - 10008:80
-    volumes: 
-      - ./ninjarig/config.json:/ninjarig/config.json
-    restart: always
-  
-  bitwarden:
-    hostname: Bitwarden
-    image: bitwardenrs/server:alpine
-    user: 1000:1000
-    restart: always
-    ports:
-      - 10006:80
-    volumes: 
-      - $XDG_DATA_HOME/bitwarden:/data
-    depends_on: 
-      - nginx
-    environment:
-      - DOMAIN=https://secrets.eathtespagheti.eu
-      - SMTP_HOST=smtp
-      - SMTP_FROM=bitwarden@eathtespagheti.eu
-      - SMTP_SSL=false
-  
-  collabora:
-    hostname: Collabora
-    image: collabora/code
-    restart: unless-stopped
-    depends_on: 
-      - nginx
-    ports: 
-      - 9980:9980
-    env_file: secrets/collabora.env
-    environment: 
-      - username=fabio
-      - server_name=collabora.eathtespagheti.eu
-      - domain=cloud.eathtespagheti.eu
-
   yacht:
     hostname: Yacht
     image: selfhostedpro/yacht
@@ -382,6 +382,17 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - $XDG_CONFIG_HOME/yacht:/config
       - $PROJECTS_FOLDER/dockercomposer:/compose
+
+  uptime-cuma:
+    image: louislam/uptime-kuma
+    # user: 1000:1000
+    restart: always
+    ports:
+      - 10010:3001
+    volumes: 
+      - $XDG_DATA_HOME/uptime-cuma:/app/data
+    depends_on: 
+      - nginx
 
 secrets:
   nextcloud_admin_password:

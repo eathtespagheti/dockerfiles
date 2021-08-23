@@ -1,7 +1,9 @@
 {
-    "categories": [{
+    "categories": [
+        {
             "name": "Productivity",
-            "items": [{
+            "items": [
+                {
                     "name": "Nextcloud",
                     "displayURL": "cloud.eathtespagheti.eu",
                     "url": "https://cloud.eathtespagheti.eu",
@@ -17,7 +19,8 @@
         },
         {
             "name": "Media",
-            "items": [{
+            "items": [
+                {
                     "name": "Jellyfin",
                     "displayURL": "videos.eathtespagheti.eu",
                     "url": "https://videos.eathtespagheti.eu",
@@ -45,7 +48,8 @@
         },
         {
             "name": "Stats",
-            "items": [{
+            "items": [
+                {
                     "name": "ethminer",
                     "displayURL": "ethminer.eathtespagheti.eu",
                     "url": "https://ethminer.eathtespagheti.eu",
@@ -56,12 +60,19 @@
                     "displayURL": "stats.eathtespagheti.eu",
                     "url": "https://stats.eathtespagheti.eu",
                     "icon": "pie_chart"
+                },
+                {
+                    "name": "Uptime Kuma",
+                    "displayURL": "uptime.eathtespagheti.eu",
+                    "url": "https://uptime.eathtespagheti.eu",
+                    "icon": "analytics"
                 }
             ]
         },
         {
             "name": "System Management",
-            "items": [{
+            "items": [
+                {
                     "name": "Router",
                     "displayURL": "routing.eathtespagheti.eu",
                     "url": "https://routing.eathtespagheti.eu",
@@ -76,7 +87,8 @@
             ]
         }
     ],
-    "apps": [{
+    "apps": [
+        {
             "name": "Dashboard",
             "displayURL": "dashboadrd.eathtespagheti.eu",
             "url": "https://dashboadrd.eathtespagheti.eu",

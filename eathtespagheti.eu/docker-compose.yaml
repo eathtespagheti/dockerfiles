@@ -383,14 +383,14 @@ services:
       - $XDG_CONFIG_HOME/yacht:/config
       - $PROJECTS_FOLDER/dockercomposer:/compose
 
-  uptime-cuma:
+  uptime-kuma:
     image: louislam/uptime-kuma
     user: 1000:1000
     restart: always
     ports:
       - 10010:3001
     volumes: 
-      - $XDG_DATA_HOME/uptime-cuma:/app/data
+      - $XDG_DATA_HOME/uptime-kuma:/app/data
     depends_on: 
       - nginx
 

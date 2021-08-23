@@ -385,7 +385,7 @@ services:
 
   uptime-cuma:
     image: louislam/uptime-kuma
-    # user: 1000:1000
+    user: 1000:1000
     restart: always
     ports:
       - 10010:3001

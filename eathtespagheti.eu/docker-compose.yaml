@@ -345,6 +345,12 @@ services:
       - $XDG_CONFIG_HOME/picard:/config:rw
       - /run/media/fabio/Beta/fabio/Music:/storage:rw
 
+  theia:
+    image: theiaide/theia-full
+    restart: always
+    ports: 
+      - 10012:3000
+
   transmission:
     hostname: Transmission
     image: ghcr.io/linuxserver/transmission
@@ -366,7 +372,7 @@ services:
       - 51413:51413/udp
     secrets:
       - transmission_password
-  
+
   yacht:
     hostname: Yacht
     image: selfhostedpro/yacht

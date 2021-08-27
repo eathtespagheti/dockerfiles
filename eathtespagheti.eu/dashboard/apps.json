@@ -99,6 +99,12 @@
             "displayURL": "torrents.eathtespagheti.eu",
             "url": "https://torrents.eathtespagheti.eu/web/",
             "icon": "sailing"
+        },
+        {
+            "name": "Hemport",
+            "displayURL": "hemport.eathtespagheti.eu",
+            "url": "https://hemport.eathtespagheti.eu",
+            "icon": "grass"
         }
     ]
 }

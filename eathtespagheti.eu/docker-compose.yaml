@@ -93,7 +93,7 @@ services:
       - SMTP_AUTHTYPE=PLAIN
       - MAIL_FROM_ADDRESS=xnextcloudx
       - MAIL_DOMAIN=eathtespagheti.eu
-      - PHP_MEMORY_LIMIT=8G
+      - PHP_MEMORY_LIMIT=1G
       - PHP_UPLOAD_LIMIT=16G
     volumes:
       - /run/media/fabio/Cloud/nextcloud-data:/var/www/html

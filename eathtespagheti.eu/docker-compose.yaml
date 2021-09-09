@@ -219,7 +219,7 @@ services:
     ports:
       - 10006:80
     volumes: 
-      - $XDG_DATA_HOME/bitwarden:/data
+      - /run/media/fabio/Bitwarden:/data
     depends_on: 
       - nginx
     environment:

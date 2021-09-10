@@ -96,7 +96,7 @@ services:
       - PHP_MEMORY_LIMIT=1G
       - PHP_UPLOAD_LIMIT=16G
     volumes:
-      - /run/media/fabio/Nextcloud/data:/var/www/html
+      - /run/media/fabio/Nextcloud:/var/www/html
       - /run/media/fabio/Alpha:/media/Alpha
       - /run/media/fabio/Beta:/media/Beta
     depends_on:

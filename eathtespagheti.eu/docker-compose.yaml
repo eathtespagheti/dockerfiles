@@ -135,7 +135,7 @@ services:
     depends_on:
       - nginx
     volumes:
-      - $XDG_DATA_HOME/lms:/var/lms
+      - /run/media/fabio/LMS:/var/lms
       - $HOME/Music:/music:ro
 
   jellyfin:

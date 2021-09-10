@@ -344,8 +344,8 @@ services:
     environment:
       - DISPLAY_HEIGHT=950
     volumes:
-      - $XDG_CONFIG_HOME/picard:/config:rw
-      - /run/media/fabio/Beta/fabio/Music:/storage:rw
+      - /run/media/fabio/configs/picard:/config
+      - /run/media/fabio/Beta/fabio/Music:/storage
 
   theia:
     image: theiaide/theia-full
@@ -364,7 +364,7 @@ services:
       - USER=fabio
       - FILE__PASS=/run/secrets/transmission_password
     volumes:
-      - $XDG_CONFIG_HOME/transmission-daemon:/config
+      - /run/media/fabio/configs/transmission:/config
       - /run/media/fabio/Beta:/run/media/fabio/Beta
       - /run/media/fabio/Alpha:/run/media/fabio/Alpha
       - /run/media/fabio/Beta/fabio/Music:/home/fabio/Music
@@ -410,8 +410,8 @@ services:
     ports: 
       - 10004:8000
     volumes: 
+      - /run/media/fabio/configs/yacht:/config
       - /var/run/docker.sock:/var/run/docker.sock
-      - $XDG_CONFIG_HOME/yacht:/config
       - $PROJECTS_FOLDER/dockercomposer:/compose
 
   uptime-kuma:
@@ -421,7 +421,7 @@ services:
     ports:
       - 10010:3001
     volumes: 
-      - $XDG_DATA_HOME/uptime-kuma:/app/data
+      - /run/media/fabio/configs/uptime-kuma:/app/data
     depends_on: 
       - nginx
 

@@ -304,14 +304,15 @@ services:
     ports: 
       - 19999:19999
     volumes: 
-      - $XDG_CONFIG_HOME/netdata:/etc/netdata
-      - /run/media/fabio/Cloud/netdata:/var/lib/netdata
-      - $XDG_CACHE_HOME/netdata:/var/cache/netdata
+      - /run/media/fabio/Netdata/config:/etc/netdata
+      - /run/media/fabio/Netdata/lib:/var/lib/netdata
+      - /run/media/fabio/Netdata/cache:/var/cache/netdata
       - /etc/passwd:/host/etc/passwd:ro
       - /etc/group:/host/etc/group:ro
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     cap_add: 
       - SYS_PTRACE
     security_opt: 

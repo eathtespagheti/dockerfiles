@@ -206,8 +206,8 @@ services:
       - mariadb
       - nginx
     volumes:
+      - /run/media/fabio/Photoprism:/photoprism/storage
       - /run/media/fabio/Beta/fabio/Pictures:/photoprism/originals
-      - /run/media/fabio/Cloud/photoprism:/photoprism/storage
   
   # Dockerized softwares & utilities
 

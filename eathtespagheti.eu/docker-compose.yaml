@@ -119,7 +119,7 @@ services:
       - TZ=Europe/Amsterdam
       - DOCKER_MODS=linuxserver/calibre-web:calibre
     volumes:
-      - $XDG_DATA_HOME/calibre-web:/config
+      - /run/media/fabio/Calibre:/config
       - /run/media/fabio/Beta/fabio/Documents/Libri:/books
     ports:
       - 10007:8083

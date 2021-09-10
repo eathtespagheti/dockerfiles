@@ -97,7 +97,7 @@ services:
       - PHP_UPLOAD_LIMIT=16G
     volumes:
       - /run/media/fabio/Nextcloud:/var/www/html
-      - /run/media/fabio/Alpha:/media/Alpha
+      - /run/media/fabio/Twins/Alpha:/media/Alpha
       - /run/media/fabio/Beta:/media/Beta
     depends_on:
       - db
@@ -158,9 +158,9 @@ services:
     volumes:
       - /run/media/fabio/Jellyfin:/config
       - jellyfinCache:/cache
-      - /run/media/fabio/Alpha/Film:/media
-      - /run/media/fabio/Alpha/SerieTV:/media2
-      - /run/media/fabio/Alpha/torrents:/media3
+      - /run/media/fabio/Twins/Alpha/Film:/media
+      - /run/media/fabio/Twins/Alpha/SerieTV:/media2
+      - /run/media/fabio/Twins/Alpha/torrents:/media3
       - $HOME/Music:/music
       - /tmp/jellyfin:/config/data/transcodes
     restart: unless-stopped
@@ -351,7 +351,7 @@ services:
     volumes:
       - /run/media/fabio/Configs/transmission:/config
       - /run/media/fabio/Beta:/run/media/fabio/Beta
-      - /run/media/fabio/Alpha:/run/media/fabio/Alpha
+      - /run/media/fabio/Twins/Alpha:/run/media/fabio/Alpha
       - /run/media/fabio/Beta/fabio/Music:/home/fabio/Music
     ports:
       - 9091:9091

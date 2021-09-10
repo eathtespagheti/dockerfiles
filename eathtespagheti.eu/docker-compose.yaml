@@ -8,7 +8,7 @@ services:
     env_file:
       - nextcloud/nextcloud.env
     volumes:
-      - /run/media/fabio/Nextcloud/database:/var/lib/postgresql/data
+      - /run/media/fabio/Gamma/databases/postgres:/var/lib/postgresql/data
     secrets:
       - postgres_password
   
@@ -20,7 +20,7 @@ services:
       - apparmor:unconfined
     command: mysqld --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=50
     volumes:
-      - /run/media/fabio/Cloud/mariadb:/var/lib/mysql
+      - /run/media/fabio/Gamma/databases/mariadb:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql-root
       - MYSQL_PASSWORD_FILE=/run/secrets/mysql-user

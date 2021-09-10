@@ -344,7 +344,7 @@ services:
     environment:
       - DISPLAY_HEIGHT=950
     volumes:
-      - /run/media/fabio/configs/picard:/config
+      - /run/media/fabio/Gamma/configs/picard:/config
       - /run/media/fabio/Beta/fabio/Music:/storage
 
   theia:
@@ -364,7 +364,7 @@ services:
       - USER=fabio
       - FILE__PASS=/run/secrets/transmission_password
     volumes:
-      - /run/media/fabio/configs/transmission:/config
+      - /run/media/fabio/Gamma/configs/transmission:/config
       - /run/media/fabio/Beta:/run/media/fabio/Beta
       - /run/media/fabio/Alpha:/run/media/fabio/Alpha
       - /run/media/fabio/Beta/fabio/Music:/home/fabio/Music
@@ -410,7 +410,7 @@ services:
     ports: 
       - 10004:8000
     volumes: 
-      - /run/media/fabio/configs/yacht:/config
+      - /run/media/fabio/Gamma/configs/yacht:/config
       - /var/run/docker.sock:/var/run/docker.sock
       - $PROJECTS_FOLDER/dockercomposer:/compose
 
@@ -421,7 +421,7 @@ services:
     ports:
       - 10010:3001
     volumes: 
-      - /run/media/fabio/configs/uptime-kuma:/app/data
+      - /run/media/fabio/Gamma/configs/uptime-kuma:/app/data
     depends_on: 
       - nginx
 

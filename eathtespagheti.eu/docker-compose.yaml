@@ -8,7 +8,7 @@ services:
     env_file:
       - nextcloud/nextcloud.env
     volumes:
-      - /run/media/fabio/Gamma/databases/postgres:/var/lib/postgresql/data
+      - /run/media/fabio/Configs/postgres:/var/lib/postgresql/data
     secrets:
       - postgres_password
   
@@ -20,7 +20,7 @@ services:
       - apparmor:unconfined
     command: mysqld --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=50
     volumes:
-      - /run/media/fabio/Gamma/databases/mariadb:/var/lib/mysql
+      - /run/media/fabio/Configs/mariadb:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql-root
       - MYSQL_PASSWORD_FILE=/run/secrets/mysql-user
@@ -119,7 +119,7 @@ services:
       - TZ=Europe/Amsterdam
       - DOCKER_MODS=linuxserver/calibre-web:calibre
     volumes:
-      - /run/media/fabio/Calibre:/config
+      - /run/media/fabio/Configs/Calibre:/config
       - /run/media/fabio/Beta/fabio/Documents/Libri:/books
     ports:
       - 10007:8083
@@ -135,7 +135,7 @@ services:
     depends_on:
       - nginx
     volumes:
-      - /run/media/fabio/LMS:/var/lms
+      - /run/media/fabio/Configs/LMS:/var/lms
       - $HOME/Music:/music:ro
 
   jellyfin:
@@ -304,9 +304,9 @@ services:
     ports: 
       - 19999:19999
     volumes: 
-      - /run/media/fabio/Netdata/config:/etc/netdata
-      - /run/media/fabio/Netdata/lib:/var/lib/netdata
-      - /run/media/fabio/Netdata/cache:/var/cache/netdata
+      - /run/media/fabio/Configs/Netdata/config:/etc/netdata
+      - /run/media/fabio/Configs/Netdata/lib:/var/lib/netdata
+      - /run/media/fabio/Configs/Netdata/cache:/var/cache/netdata
       - /etc/passwd:/host/etc/passwd:ro
       - /etc/group:/host/etc/group:ro
       - /proc:/host/proc:ro
@@ -335,7 +335,7 @@ services:
     environment:
       - DISPLAY_HEIGHT=950
     volumes:
-      - /run/media/fabio/Gamma/configs/picard:/config
+      - /run/media/fabio/Configs/picard:/config
       - /run/media/fabio/Beta/fabio/Music:/storage
 
   transmission:
@@ -349,7 +349,7 @@ services:
       - USER=fabio
       - FILE__PASS=/run/secrets/transmission_password
     volumes:
-      - /run/media/fabio/Gamma/configs/transmission:/config
+      - /run/media/fabio/Configs/transmission:/config
       - /run/media/fabio/Beta:/run/media/fabio/Beta
       - /run/media/fabio/Alpha:/run/media/fabio/Alpha
       - /run/media/fabio/Beta/fabio/Music:/home/fabio/Music
@@ -372,7 +372,7 @@ services:
     ports: 
       - 10004:8000
     volumes: 
-      - /run/media/fabio/Gamma/configs/yacht:/config
+      - /run/media/fabio/Configs/yacht:/config
       - /var/run/docker.sock:/var/run/docker.sock
       - $PROJECTS_FOLDER/dockercomposer:/compose
 
@@ -383,7 +383,7 @@ services:
     ports:
       - 10010:3001
     volumes: 
-      - /run/media/fabio/Gamma/configs/uptime-kuma:/app/data
+      - /run/media/fabio/Configs/uptime-kuma:/app/data
     depends_on: 
       - nginx
 

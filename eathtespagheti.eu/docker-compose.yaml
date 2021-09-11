@@ -98,7 +98,6 @@ services:
     volumes:
       - /run/media/fabio/Nextcloud:/var/www/html
       - /run/media/fabio/Twins/Alpha:/media/Alpha
-      - /run/media/fabio/Beta:/media/Beta
     depends_on:
       - db
       - redis
@@ -120,7 +119,7 @@ services:
       - DOCKER_MODS=linuxserver/calibre-web:calibre
     volumes:
       - /run/media/fabio/Configs/Calibre:/config
-      - /run/media/fabio/Beta/fabio/Documents/Libri:/books
+      - /run/media/fabio/Nextcloud/data/fabio/files/Documenti/Libri:/books
     ports:
       - 10007:8083
     restart: unless-stopped
@@ -207,7 +206,7 @@ services:
       - nginx
     volumes:
       - /run/media/fabio/Photoprism:/photoprism/storage
-      - /run/media/fabio/Beta/fabio/Pictures:/photoprism/originals
+      - /run/media/fabio/Nextcloud/data/fabio/files/Pictures:/photoprism/originals
   
   # Dockerized softwares & utilities
 
@@ -336,7 +335,7 @@ services:
       - DISPLAY_HEIGHT=950
     volumes:
       - /run/media/fabio/Configs/picard:/config
-      - /run/media/fabio/Beta/fabio/Music:/storage
+      - /run/media/fabio/Nextcloud/data/fabio/files/Music:/storage
 
   transmission:
     hostname: Transmission
@@ -350,9 +349,8 @@ services:
       - FILE__PASS=/run/secrets/transmission_password
     volumes:
       - /run/media/fabio/Configs/transmission:/config
-      - /run/media/fabio/Beta:/run/media/fabio/Beta
       - /run/media/fabio/Twins/Alpha:/run/media/fabio/Alpha
-      - /run/media/fabio/Beta/fabio/Music:/home/fabio/Music
+      - /run/media/fabio/Nextcloud/data/fabio/files/Music:/home/fabio/Music
     ports:
       - 9091:9091
       - 51413:51413

@@ -312,6 +312,10 @@ services:
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - NETDATA_CLAIM_TOKEN=GpktoJ9r2J_C1yTbyvPVbLiD5ZkOHSvMzM-Pny3G38WkAKqN-WpHopr9RMTdd8TPEHlF3dqH2gidjbwqe1kWan5BVx8hd991BLkVnT4J6K3dBMJ8EulbHyD-ZMzczJ_-vVQ5zoU
+      - NETDATA_CLAIM_URL=https://app.netdata.cloud
+      - NETDATA_CLAIM_ROOMS=5fc9fff4-afa7-418a-8e67-c93c05d1dc5a
     cap_add: 
       - SYS_PTRACE
     security_opt: 

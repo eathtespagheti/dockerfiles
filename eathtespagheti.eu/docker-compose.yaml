@@ -135,7 +135,7 @@ services:
       - nginx
     volumes:
       - /run/media/fabio/Configs/LMS:/var/lms
-      - $HOME/Music:/music:ro
+      - /run/media/fabio/Nextcloud/data/fabio/files/Music:/music:ro
 
   jellyfin:
     hostname: Jellyfin

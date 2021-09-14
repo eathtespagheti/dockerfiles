@@ -90,8 +90,8 @@
     ],
     "apps": [{
             "name": "Dashboard",
-            "displayURL": "dashboadrd.eathtespagheti.eu",
-            "url": "https://dashboadrd.eathtespagheti.eu",
+            "displayURL": "dashboard.eathtespagheti.eu",
+            "url": "https://dashboard.eathtespagheti.eu",
             "icon": "dashboard"
         },
         {

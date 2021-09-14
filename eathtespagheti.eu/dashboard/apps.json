@@ -1,9 +1,7 @@
 {
-    "categories": [
-        {
+    "categories": [{
             "name": "Productivity",
-            "items": [
-                {
+            "items": [{
                     "name": "Nextcloud",
                     "displayURL": "cloud.eathtespagheti.eu",
                     "url": "https://cloud.eathtespagheti.eu",
@@ -14,13 +12,18 @@
                     "displayURL": "secrets.eathtespagheti.eu",
                     "url": "https://secrets.eathtespagheti.eu",
                     "icon": "lock"
+                },
+                {
+                    "name": "Home Assistant",
+                    "displayURL": "iot.eathtespagheti.eu",
+                    "url": "https://iot.eathtespagheti.eu",
+                    "icon": "house"
                 }
             ]
         },
         {
             "name": "Media",
-            "items": [
-                {
+            "items": [{
                     "name": "Jellyfin",
                     "displayURL": "videos.eathtespagheti.eu",
                     "url": "https://videos.eathtespagheti.eu",
@@ -48,8 +51,7 @@
         },
         {
             "name": "Stats",
-            "items": [
-                {
+            "items": [{
                     "name": "ethminer",
                     "displayURL": "ethminer.eathtespagheti.eu",
                     "url": "https://ethminer.eathtespagheti.eu",
@@ -71,8 +73,7 @@
         },
         {
             "name": "System Management",
-            "items": [
-                {
+            "items": [{
                     "name": "Router",
                     "displayURL": "routing.eathtespagheti.eu",
                     "url": "https://routing.eathtespagheti.eu",
@@ -87,8 +88,7 @@
             ]
         }
     ],
-    "apps": [
-        {
+    "apps": [{
             "name": "Dashboard",
             "displayURL": "dashboadrd.eathtespagheti.eu",
             "url": "https://dashboadrd.eathtespagheti.eu",

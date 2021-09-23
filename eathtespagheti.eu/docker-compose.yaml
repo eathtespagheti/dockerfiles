@@ -253,20 +253,6 @@ services:
       - 53:53/tcp
       - 127.0.0.1:953:953/tcp
 
-  collabora:
-    hostname: Collabora
-    image: collabora/code
-    restart: unless-stopped
-    depends_on: 
-      - nginx
-    ports: 
-      - 9980:9980
-    env_file: secrets/collabora.env
-    environment: 
-      - username=fabio
-      - server_name=collabora.eathtespagheti.eu
-      - domain=cloud.eathtespagheti.eu
-
   dashboard:
     image: phntxx/dashboard
     restart: unless-stopped

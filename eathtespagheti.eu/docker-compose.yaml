@@ -223,6 +223,16 @@ services:
       - /run/media/fabio/Configs/HomeAssistant:/config
       - /run/media/fabio/Configs/HomeAssistant/docker/run:/etc/services.d/home-assistant/run
 
+  # Websites
+
+  react_ultimate_resume:
+    image: eathtespagheti/react-ultimate-resume
+    user: 1000:1000
+    ports: 
+      - 10012:3000
+    volumes: 
+      - ./react_ultimate_resume/json_stub.json:/react-ultimate-resume/src/data/json_stub.json
+
   # Dockerized softwares & utilities
 
   bitwarden:

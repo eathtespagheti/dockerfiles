@@ -89,6 +89,11 @@
         }
     ],
     "apps": [{
+            "name": "Resume",
+            "displayURL": "resume.eathtespagheti.eu",
+            "url": "https://resume.eathtespagheti.eu",
+            "icon": "work"
+        },{
             "name": "Dashboard",
             "displayURL": "dashboard.eathtespagheti.eu",
             "url": "https://dashboard.eathtespagheti.eu",

@@ -301,6 +301,7 @@ services:
 
   kms:
     image: teddysun/kms
+    restart: unless-stopped
     depends_on: 
       - nginx
     ports:

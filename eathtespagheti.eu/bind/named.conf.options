@@ -29,4 +29,6 @@ options {
     	allow-recursion { internal; };
     	listen-on { any; };
 	allow-transfer { none; };
+
+    allow-query { any; };
 };

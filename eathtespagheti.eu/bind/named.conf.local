@@ -7,6 +7,11 @@ zone "eathtespagheti.eu" {
     file "/etc/bind/db.eathtespagheti.eu";
 };
 
+zone "bigchameleon" {
+    type master;
+    file "/etc/bind/db.bigchameleon";
+};
+
 zone "8boi" {
     type master;
     file "/etc/bind/db.8boi";

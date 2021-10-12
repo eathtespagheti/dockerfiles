@@ -7,6 +7,11 @@ zone "eathtespagheti.eu" {
     file "/etc/bind/db.eathtespagheti.eu";
 };
 
+zone "8boi" {
+    type master;
+    file "/etc/bind/db.8boi";
+};
+
 // Consider adding the 1918 zones here, if they are not used in your
 // organization
 //include "/etc/bind/zones.rfc1918";

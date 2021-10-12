@@ -3,7 +3,7 @@ version: "3.8"
 services:
   # Databases
   db:
-    image: postgres:alpine
+    image: postgres:13.4-alpine
     restart: always
     env_file:
       - nextcloud/nextcloud.env

@@ -17,6 +17,11 @@ zone "8boi" {
     file "/etc/bind/db.8boi";
 };
 
+zone "amdstarkportable" {
+    type master;
+    file "/etc/bind/db.amdstarkportable";
+};
+
 // Consider adding the 1918 zones here, if they are not used in your
 // organization
 //include "/etc/bind/zones.rfc1918";

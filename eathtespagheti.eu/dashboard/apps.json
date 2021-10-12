@@ -18,6 +18,12 @@
                     "displayURL": "iot.eathtespagheti.eu",
                     "url": "https://iot.eathtespagheti.eu",
                     "icon": "house"
+                },
+                {
+                    "name": "ferdi",
+                    "displayURL": "ferdi.eathtespagheti.eu",
+                    "url": "https://ferdi.eathtespagheti.eu",
+                    "icon": "question_answer"
                 }
             ]
         },

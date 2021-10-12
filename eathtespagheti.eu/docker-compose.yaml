@@ -299,6 +299,23 @@ services:
       - /dev/dri/card1:/dev/dri/card1
       - /dev/dri/renderD129:/dev/dri/renderD129
 
+  ferdi:
+    image: getferdi/ferdi-server
+    environment:
+      - EXTERNAL_DOMAIN=ferdi.eathtespagheti.eu
+      - SMPT_HOST=smtp
+      - SMTP_PORT=25
+      - MAIL_USERNAME=
+      - MAIL_PASSWORD=
+      - MAIL_SENDER=noreply@ferdi.eathtespagheti.eu
+    volumes:
+      - /run/media/fabio/Configs/Ferdi/config:/config
+      - /run/media/fabio/Configs/Ferdi/database:/app/database
+      - /run/media/fabio/Configs/Ferdi/recipes:/app/recipes
+    ports:
+      - 10008:80
+    restart: unless-stopped
+
   kms:
     image: teddysun/kms
     restart: unless-stopped

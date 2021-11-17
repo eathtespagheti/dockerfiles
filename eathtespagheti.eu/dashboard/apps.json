@@ -92,6 +92,16 @@
                     "icon": "device_hub"
                 }
             ]
+        },
+        {
+            "name": "Tools",
+            "items": [{
+                    "name": "Hoppscotch",
+                    "displayURL": "hoppscotch.eathtespagheti.eu",
+                    "url": "https://hoppscotch.eathtespagheti.eu",
+                    "icon": "mail_outline"
+                }
+            ]
         }
     ],
     "apps": [{

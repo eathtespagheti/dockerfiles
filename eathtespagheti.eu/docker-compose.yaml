@@ -316,6 +316,11 @@ services:
       - 10008:80
     restart: unless-stopped
 
+  hoppscotch:
+    image: hoppscotch/hoppscotch:latest
+    ports:
+      - 10013:3000
+
   kms:
     image: teddysun/kms
     restart: unless-stopped

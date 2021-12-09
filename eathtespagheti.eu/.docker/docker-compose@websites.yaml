@@ -8,4 +8,4 @@ services:
     ports: 
       - 10012:3000
     volumes: 
-      - ./react_ultimate_resume/json_stub.json:/react-ultimate-resume/src/data/json_stub.json
+      - ../react_ultimate_resume/json_stub.json:/react-ultimate-resume/src/data/json_stub.json

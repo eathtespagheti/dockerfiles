@@ -7,7 +7,7 @@ services:
     hostname: bind9
     restart: always
     volumes: 
-      - ./bind:/etc/bind:ro
+      - ../bind:/etc/bind:ro
     ports: 
       - 53:53/udp
       - 53:53/tcp
@@ -19,7 +19,7 @@ services:
     restart: always
     network_mode: host
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - /var/www/letsencrypt:/var/www/letsencrypt:ro
       - /var/cache/pacman/pkg:/pkgcache:ro

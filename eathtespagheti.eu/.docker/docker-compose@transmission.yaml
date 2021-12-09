@@ -25,4 +25,4 @@ services:
 
 secrets:
   transmission_password:
-    file: ./secrets/transmission_password
+    file: ../secrets/transmission_password

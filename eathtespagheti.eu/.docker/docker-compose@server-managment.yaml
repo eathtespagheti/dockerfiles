@@ -21,7 +21,7 @@ services:
     image: phntxx/dashboard
     restart: unless-stopped
     volumes:
-      - ./dashboard:/app/data:ro
+      - ../dashboard:/app/data:ro
     ports:
       - 10009:8080
     depends_on: 
@@ -60,7 +60,7 @@ services:
       - photoprism
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./ofelia/jobs.ini:/etc/ofelia/config.ini
+      - ../ofelia/jobs.ini:/etc/ofelia/config.ini
 
   yacht:
     hostname: Yacht

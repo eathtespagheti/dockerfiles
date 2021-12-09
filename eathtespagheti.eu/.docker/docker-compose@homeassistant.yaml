@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant
+    restart: always
+    privileged: true
+    network_mode: host
+    environment: 
+      - PUID=1000
+      - PGID=1000
+    volumes: 
+      - /etc/localtime:/etc/localtime:ro
+      - /run/media/fabio/Configs/HomeAssistant:/config
+      - /run/media/fabio/Configs/HomeAssistant/docker/run:/etc/services.d/home-assistant/run

@@ -17,21 +17,6 @@ services:
       - ZONE=eathtespagheti.eu
       - PROXIED=true
 
-  homeassistant:
-    image: ghcr.io/home-assistant/home-assistant
-    restart: always
-    privileged: true
-    network_mode: host
-    environment: 
-      - PUID=1000
-      - PGID=1000
-    volumes: 
-      - /etc/localtime:/etc/localtime:ro
-      - /run/media/fabio/Configs/HomeAssistant:/config
-      - /run/media/fabio/Configs/HomeAssistant/docker/run:/etc/services.d/home-assistant/run
-
-  # Websites
-
   react_ultimate_resume:
     image: eathtespagheti/react-ultimate-resume
     user: 1000:1000

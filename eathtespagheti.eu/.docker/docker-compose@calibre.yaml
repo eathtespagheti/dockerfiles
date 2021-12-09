@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+
+  calibre:
+    hostname: Calibre
+    image: ghcr.io/linuxserver/calibre-web
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - DOCKER_MODS=linuxserver/calibre-web:calibre
+    volumes:
+      - /run/media/fabio/Configs/Calibre:/config
+      - /run/media/fabio/Nextcloud/data/fabio/files/Documenti/Libri:/books
+    ports:
+      - 10007:8083
+    restart: unless-stopped

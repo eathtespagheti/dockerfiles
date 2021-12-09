@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+
+  lms:
+    hostname: lms
+    image: epoupon/lms
+    restart: unless-stopped
+    user: 1000:1000
+    ports:
+      - 10001:5082
+    depends_on:
+      - nginx
+    volumes:
+      - /run/media/fabio/Configs/LMS:/var/lms
+      - /run/media/fabio/Nextcloud/data/fabio/files/Music:/music:ro

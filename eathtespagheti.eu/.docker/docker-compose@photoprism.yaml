@@ -30,7 +30,7 @@ services:
       - seccomp:unconfined
       - apparmor:unconfined
     env_file:
-      - secrets/photoprism.env
+      - ../secrets/photoprism.env
     environment:
       - PHOTOPRISM_HTTP_PORT=80
       - PHOTOPRISM_HTTP_COMPRESSION=gzip
@@ -64,6 +64,6 @@ services:
 
 secrets:
   mysql-root:
-    file: ./secrets/mysql-root
+    file: ../secrets/mysql-root
   mysql-user:
-    file: ./secrets/mysql-user
+    file: ../secrets/mysql-user

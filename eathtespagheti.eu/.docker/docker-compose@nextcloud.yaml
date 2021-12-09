@@ -6,7 +6,7 @@ services:
     image: postgres:13.4-alpine
     restart: always
     env_file:
-      - nextcloud/nextcloud.env
+      - ../nextcloud/nextcloud.env
     volumes:
       - /run/media/fabio/Configs/postgres:/var/lib/postgresql/data
     secrets:
@@ -33,7 +33,7 @@ services:
     ports:
       - 10000:80
     env_file:
-      - nextcloud/nextcloud.env
+      - ../nextcloud/nextcloud.env
     environment: 
       - POSTGRES_HOST=db
       - NEXTCLOUD_ADMIN_PASSWORD_FILE=/run/secrets/nextcloud_admin_password
@@ -62,6 +62,6 @@ services:
 
 secrets:
   nextcloud_admin_password:
-    file: ./secrets/nextcloud_admin_password
+    file: ../secrets/nextcloud_admin_password
   postgres_password:
-    file: ./secrets/postgres_password
+    file: ../secrets/postgres_password

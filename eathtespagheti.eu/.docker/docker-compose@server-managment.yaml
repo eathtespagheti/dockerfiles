@@ -12,7 +12,7 @@ services:
     image: oznu/cloudflare-ddns
     restart: always
     env_file: 
-      - secrets/cloudflareToken
+      - ../secrets/cloudflareToken
     environment:
       - ZONE=eathtespagheti.eu
       - PROXIED=true

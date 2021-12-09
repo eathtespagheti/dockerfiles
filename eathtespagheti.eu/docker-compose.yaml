@@ -2,23 +2,6 @@ version: "3.9"
 
 services:
 
-  ferdi:
-    image: getferdi/ferdi-server
-    environment:
-      - EXTERNAL_DOMAIN=ferdi.eathtespagheti.eu
-      - SMPT_HOST=smtp
-      - SMTP_PORT=25
-      - MAIL_USERNAME=
-      - MAIL_PASSWORD=
-      - MAIL_SENDER=noreply@ferdi.eathtespagheti.eu
-    volumes:
-      - /run/media/fabio/Configs/Ferdi/config:/config
-      - /run/media/fabio/Configs/Ferdi/database:/app/database
-      - /run/media/fabio/Configs/Ferdi/recipes:/app/recipes
-    ports:
-      - 10008:80
-    restart: unless-stopped
-
   hoppscotch:
     image: hoppscotch/hoppscotch:latest
     ports:

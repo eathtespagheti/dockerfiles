@@ -25,17 +25,6 @@ services:
     volumes: 
       - ./react_ultimate_resume/json_stub.json:/react-ultimate-resume/src/data/json_stub.json
 
-  bind9:
-    image: internetsystemsconsortium/bind9:9.16
-    hostname: bind9
-    restart: always
-    volumes: 
-      - ./bind:/etc/bind:ro
-    ports: 
-      - 53:53/udp
-      - 53:53/tcp
-      - 127.0.0.1:953:953/tcp
-
   dashboard:
     image: phntxx/dashboard
     restart: unless-stopped

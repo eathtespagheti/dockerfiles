@@ -2,6 +2,17 @@ version: "3.9"
 
 services:
 
+  bind9:
+    image: internetsystemsconsortium/bind9:9.16
+    hostname: bind9
+    restart: always
+    volumes: 
+      - ./bind:/etc/bind:ro
+    ports: 
+      - 53:53/udp
+      - 53:53/tcp
+      - 127.0.0.1:953:953/tcp
+
   nginx:
     hostname: nginx
     image: nginx:alpine
@@ -11,4 +22,4 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - /var/www/letsencrypt:/var/www/letsencrypt:ro
-      - /var/cache/pacman/pkg:/pkgcache:ro  
+      - /var/cache/pacman/pkg:/pkgcache:ro

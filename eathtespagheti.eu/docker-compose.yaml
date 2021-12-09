@@ -2,21 +2,6 @@ version: "3.9"
 
 services:
 
-  watchtower:
-    image: containrrr/watchtower
-    restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-  
-  cloudflare-ddns:
-    image: oznu/cloudflare-ddns
-    restart: always
-    env_file: 
-      - secrets/cloudflareToken
-    environment:
-      - ZONE=eathtespagheti.eu
-      - PROXIED=true
-
   react_ultimate_resume:
     image: eathtespagheti/react-ultimate-resume
     user: 1000:1000
@@ -24,16 +9,6 @@ services:
       - 10012:3000
     volumes: 
       - ./react_ultimate_resume/json_stub.json:/react-ultimate-resume/src/data/json_stub.json
-
-  dashboard:
-    image: phntxx/dashboard
-    restart: unless-stopped
-    volumes:
-      - ./dashboard:/app/data:ro
-    ports:
-      - 10009:8080
-    depends_on: 
-      - nginx
 
   ethminer:
     hostname: BigChameleon
@@ -91,41 +66,6 @@ services:
     ports:
       - 1688:1688
 
-  netdata:
-    image: netdata/netdata
-    hostname: BigChameleon
-    user: 1000:1000
-    restart: unless-stopped
-    ports: 
-      - 19999:19999
-    volumes: 
-      - /run/media/fabio/Configs/Netdata/config:/etc/netdata
-      - /run/media/fabio/Configs/Netdata/lib:/var/lib/netdata
-      - /run/media/fabio/Configs/Netdata/cache:/var/cache/netdata
-      - /etc/passwd:/host/etc/passwd:ro
-      - /etc/group:/host/etc/group:ro
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /etc/os-release:/host/etc/os-release:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    environment:
-      - NETDATA_CLAIM_TOKEN=GpktoJ9r2J_C1yTbyvPVbLiD5ZkOHSvMzM-Pny3G38WkAKqN-WpHopr9RMTdd8TPEHlF3dqH2gidjbwqe1kWan5BVx8hd991BLkVnT4J6K3dBMJ8EulbHyD-ZMzczJ_-vVQ5zoU
-      - NETDATA_CLAIM_URL=https://app.netdata.cloud
-      - NETDATA_CLAIM_ROOMS=5fc9fff4-afa7-418a-8e67-c93c05d1dc5a
-    cap_add: 
-      - SYS_PTRACE
-    security_opt: 
-      - apparmor=unconfined
-
-  ofelia:
-    image: mcuadros/ofelia:latest
-    restart: unless-stopped
-    depends_on: 
-      - photoprism
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./ofelia/jobs.ini:/etc/ofelia/config.ini
-
   picard:
     image: mikenye/picard
     restart: unless-stopped
@@ -157,33 +97,6 @@ services:
       - 51413:51413/udp
     secrets:
       - transmission_password
-
-  yacht:
-    hostname: Yacht
-    image: selfhostedpro/yacht
-    restart: always
-    environment: 
-      - PUID=1000
-      - GUID=1000
-      - ADMIN_EMAIL=sussarellu98@gmail.com
-      - COMPOSE_DIR=/compose
-    ports: 
-      - 10004:8000
-    volumes: 
-      - /run/media/fabio/Configs/yacht:/config
-      - /var/run/docker.sock:/var/run/docker.sock
-      - $PROJECTS_FOLDER/dockercomposer:/compose
-
-  uptime-kuma:
-    image: louislam/uptime-kuma
-    user: 1000:1000
-    restart: always
-    ports:
-      - 10010:3001
-    volumes: 
-      - /run/media/fabio/Configs/uptime-kuma:/app/data
-    depends_on: 
-      - nginx
 
 secrets:
   transmission_password:

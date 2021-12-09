@@ -16,19 +16,6 @@ services:
     environment:
       - ZONE=eathtespagheti.eu
       - PROXIED=true
-  
-  # Server
-  nginx:
-    hostname: nginx
-    image: nginx:alpine
-    restart: always
-    network_mode: host
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - /etc/letsencrypt:/etc/letsencrypt:ro
-      - /var/www/letsencrypt:/var/www/letsencrypt:ro
-      - /var/cache/pacman/pkg:/pkgcache:ro  
-  # Media
 
   calibre:
     hostname: Calibre

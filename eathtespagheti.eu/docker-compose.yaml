@@ -58,35 +58,6 @@ services:
       - /run/media/fabio/Configs/LMS:/var/lms
       - /run/media/fabio/Nextcloud/data/fabio/files/Music:/music:ro
 
-  jellyfin:
-    hostname: Jellyfin
-    privileged: true
-    restart: unless-stopped
-    image: eathtespagheti/jellyfin
-    network_mode: host
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Amsterdam
-      - JELLYFIN_PublishedServerUrl=https://videos.eathtespagheti.eu
-      - LIBVA_DRIVER_NAME=iHD
-    group_add:
-      - "989" # Render group for HW Acceleration
-    devices: 
-      - /dev/dri/card0:/dev/dri/card0
-      - /dev/dri/renderD128:/dev/dri/renderD128
-    volumes:
-      - /run/media/fabio/Jellyfin:/config
-      - jellyfinCache:/cache
-      - /run/media/fabio/Twins/Alpha/Film:/media
-      - /run/media/fabio/Twins/Alpha/SerieTV:/media2
-      - /run/media/fabio/Twins/Alpha/torrents:/media3
-      - $HOME/Music:/music
-      - /tmp/jellyfin:/config/data/transcodes
-    restart: unless-stopped
-    depends_on: 
-      - nginx
-  # IoT
 
   homeassistant:
     image: ghcr.io/home-assistant/home-assistant
@@ -304,6 +275,3 @@ services:
 secrets:
   transmission_password:
     file: ./secrets/transmission_password
-
-volumes: 
-  jellyfinCache:

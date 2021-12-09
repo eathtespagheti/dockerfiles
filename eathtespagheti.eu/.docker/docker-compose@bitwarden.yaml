@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+
+  bitwarden:
+    hostname: Bitwarden
+    image: bitwardenrs/server:alpine
+    user: 1000:1000
+    restart: always
+    ports:
+      - 10006:80
+    volumes: 
+      - /run/media/fabio/Bitwarden:/data
+    depends_on: 
+      - nginx
+    environment:
+      - DOMAIN=https://secrets.eathtespagheti.eu
+      - SMTP_HOST=smtp
+      - SMTP_FROM=bitwarden@eathtespagheti.eu
+      - SMTP_SSL=false

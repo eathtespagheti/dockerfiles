@@ -2,11 +2,6 @@ version: "3.9"
 
 services:
 
-  hoppscotch:
-    image: hoppscotch/hoppscotch:latest
-    ports:
-      - 10013:3000
-
   kms:
     image: teddysun/kms
     restart: unless-stopped

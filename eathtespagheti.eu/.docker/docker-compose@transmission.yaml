@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+
+  transmission:
+    hostname: Transmission
+    image: ghcr.io/linuxserver/transmission
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - USER=fabio
+      - FILE__PASS=/run/secrets/transmission_password
+    volumes:
+      - /run/media/fabio/Configs/transmission:/config
+      - /run/media/fabio/Twins/Alpha:/run/media/fabio/Alpha
+      - /run/media/fabio/Nextcloud/data/fabio/files/Music:/home/fabio/Music
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    secrets:
+      - transmission_password
+
+secrets:
+  transmission_password:
+    file: ./secrets/transmission_password

@@ -5,6 +5,8 @@ include .makefiles/.makefiles/common.mk
 include .makefiles/.makefiles/git.mk
 include .makefiles/.makefiles/docker.mk
 
+DOCKER-LOGS = $(COMPOSE-ALL-PRESET) logs -f
+
 .PHONY: clean
 clean: ## Launch all the clean targets
 	@$(MAKE) clean-dist-files

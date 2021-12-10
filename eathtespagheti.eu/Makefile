@@ -5,7 +5,7 @@ include .makefiles/.makefiles/common.mk
 include .makefiles/.makefiles/git.mk
 include .makefiles/.makefiles/docker.mk
 
-DOCKER-LOGS = $(COMPOSE-ALL-PRESET) logs -f
+COMPOSE-DEFAULT-PRESET = $(COMPOSE-ALL-PRESET)
 
 .PHONY: clean
 clean: ## Launch all the clean targets
@@ -23,7 +23,3 @@ nuke-force:
 nuke: ## Launch all the nuke targets
 	@read -p "Type 'yes' to continue: " response; \
 	[ "$$response" = "yes" ] && make nuke-force || echo "Nuke aborted"
-
-.PHONY: up
-up: secrets
-	@$(COMPOSE-ALL-PRESET) up -d

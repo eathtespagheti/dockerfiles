@@ -1,8 +1,8 @@
-version: "3.8"
+version: "3.9"
 
 services:
   # Databases
-  db:
+  postgres:
     image: postgres:13.4-alpine
     restart: always
     env_file:
@@ -35,7 +35,7 @@ services:
     env_file:
       - ../nextcloud/nextcloud.env
     environment: 
-      - POSTGRES_HOST=db
+      - POSTGRES_HOST=postgres
       - NEXTCLOUD_ADMIN_PASSWORD_FILE=/run/secrets/nextcloud_admin_password
       - NEXTCLOUD_ADMIN_USER=fabio
       - REDIS_HOST=redis
@@ -52,7 +52,7 @@ services:
       - /run/media/fabio/Nextcloud:/var/www/html
       - /run/media/fabio/Twins/Alpha:/media/Alpha
     depends_on:
-      - db
+      - postgres
       - redis
       - nginx
       - smtp

@@ -25,6 +25,7 @@ services:
       - /run/media/fabio/Twins/Alpha/Film:/media
       - /run/media/fabio/Twins/Alpha/SerieTV:/media2
       - /run/media/fabio/Twins/Alpha/torrents:/media3
+      - /run/media/fabio/Nextcloud/data/fabio/files/Videos/Hero 8:/media4
       - $HOME/Music:/music
       - /tmp/jellyfin:/config/data/transcodes
     restart: unless-stopped

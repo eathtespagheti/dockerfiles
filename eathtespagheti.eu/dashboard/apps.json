@@ -88,6 +88,12 @@
                     "displayURL": "hoppscotch.eathtespagheti.eu",
                     "url": "https://hoppscotch.eathtespagheti.eu",
                     "icon": "mail_outline"
+                },
+                {
+                    "name": "Swagger Editor",
+                    "displayURL": "swagger.eathtespagheti.eu",
+                    "url": "https://swagger.eathtespagheti.eu",
+                    "icon": "code"
                 }
             ]
         }

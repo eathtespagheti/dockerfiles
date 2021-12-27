@@ -18,12 +18,6 @@
                     "displayURL": "iot.eathtespagheti.eu",
                     "url": "https://iot.eathtespagheti.eu",
                     "icon": "house"
-                },
-                {
-                    "name": "ferdi",
-                    "displayURL": "ferdi.eathtespagheti.eu",
-                    "url": "https://ferdi.eathtespagheti.eu",
-                    "icon": "question_answer"
                 }
             ]
         },
@@ -68,12 +62,6 @@
                     "displayURL": "stats.eathtespagheti.eu",
                     "url": "https://stats.eathtespagheti.eu",
                     "icon": "pie_chart"
-                },
-                {
-                    "name": "Uptime Kuma",
-                    "displayURL": "uptime.eathtespagheti.eu",
-                    "url": "https://uptime.eathtespagheti.eu",
-                    "icon": "analytics"
                 }
             ]
         },

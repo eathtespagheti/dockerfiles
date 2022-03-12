@@ -2,15 +2,32 @@ version: "3.9"
 
 services:
 
+  homeassistant_postgres:
+    image: postgres:alpine
+    restart: always
+    environment:
+        POSTGRES_USER: homeassistant
+        POSTGRES_PASSWORD_FILE: /run/secrets/homeassistant_postgres_password
+    volumes:
+      - /run/media/fabio/Configs/HomeAssistant/postgres:/var/lib/postgresql/data
+    secrets:
+      - homeassistant_postgres_password
+
   homeassistant:
     image: ghcr.io/home-assistant/home-assistant
     restart: always
     privileged: true
-    network_mode: host
+    ports:
+        - 8123:8123
+    depends_on:
+        - homeassistant_postgres
     environment: 
       - PUID=1000
       - PGID=1000
     volumes: 
       - /etc/localtime:/etc/localtime:ro
-      - /run/media/fabio/Configs/HomeAssistant:/config
-      - /run/media/fabio/Configs/HomeAssistant/docker/run:/etc/services.d/home-assistant/run
+      - /run/media/fabio/Configs/HomeAssistant/app:/config
+
+secrets:
+  homeassistant_postgres_password:
+    file: ../secrets/homeassistant_postgres_password

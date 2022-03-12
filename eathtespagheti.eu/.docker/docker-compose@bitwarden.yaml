@@ -4,7 +4,7 @@ services:
 
   bitwarden:
     hostname: Bitwarden
-    image: bitwardenrs/server:alpine
+    image: vaultwarden/server:alpine
     user: 1000:1000
     restart: always
     ports:

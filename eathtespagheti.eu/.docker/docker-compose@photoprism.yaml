@@ -60,7 +60,8 @@ services:
       - nginx
     volumes:
       - /run/media/fabio/Photoprism:/photoprism/storage
-      - /run/media/fabio/Nextcloud/data/fabio/files/Pictures:/photoprism/originals
+      - /run/media/fabio/Nextcloud/data/fabio/files/Pictures:/photoprism/originals/Pictures
+      - /run/media/fabio/Nextcloud/data/fabio/files/Videos:/photoprism/originals/Videos
 
 secrets:
   mysql-root:

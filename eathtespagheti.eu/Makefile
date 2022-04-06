@@ -1,4 +1,4 @@
-EXTRA-SERVICES := bind9 bitwarden calibre cloudflare-ddns dashboard postgres ethminer homeassistant homeassistant_postgres hoppscotch jellyfin kms lms mariadb mysql-root mysql-user netdata nextcloud nextcloud_admin_password nginx ofelia photoprism picard react_ultimate_resume redis smtp swagger transmission watchtower yacht
+EXTRA-SERVICES := bind9 bitwarden bitwarden-postgres calibre cloudflare-ddns dashboard postgres ethminer homeassistant homeassistant_postgres hoppscotch jellyfin kms lms mariadb mysql-root mysql-user netdata nextcloud nextcloud_admin_password nginx ofelia photoprism picard react_ultimate_resume redis smtp swagger transmission watchtower yacht pgloader
 EXTRA-COMPOSE-FILES := $(shell find . -name "docker-compose@*.y*ml")
 
 include .makefiles/.makefiles/common.mk

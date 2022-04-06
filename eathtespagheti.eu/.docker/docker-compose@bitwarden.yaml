@@ -2,6 +2,19 @@ version: "3.9"
 
 services:
 
+
+  bitwarden-postgres:
+    image: postgres:alpine
+    restart: always
+    environment:
+        POSTGRES_USER: bitwarden
+        POSTGRES_PASSWORD_FILE: /run/secrets/bitwarden_postgres_password
+    volumes:
+      - /run/media/fabio/Bitwarden/postgres:/var/lib/postgresql/data
+    secrets:
+      - bitwarden_postgres_password
+
+
   bitwarden:
     hostname: Bitwarden
     image: vaultwarden/server:alpine
@@ -10,11 +23,29 @@ services:
     ports:
       - 10006:80
     volumes: 
-      - /run/media/fabio/Bitwarden:/data
+      - /run/media/fabio/Bitwarden/app:/data
     depends_on: 
       - nginx
+      - bitwarden-postgres
     environment:
       - DOMAIN=https://secrets.eathtespagheti.eu
       - SMTP_HOST=smtp
       - SMTP_FROM=bitwarden@eathtespagheti.eu
       - SMTP_SSL=false
+        #env_file:
+        #- ../secrets/bitwarden.env
+
+  pgloader:
+    image: dimitri/pgloader:latest
+    volumes: 
+      - /run/media/fabio/Bitwarden/app:/data:ro
+      - testvolume:/import
+    depends_on: 
+      - bitwarden-postgres
+
+volumes:
+  testvolume:
+
+secrets:
+  bitwarden_postgres_password:
+    file: ../secrets/bitwarden_postgres_password

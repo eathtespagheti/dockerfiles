@@ -14,7 +14,7 @@ services:
       - FILE__PASS=/run/secrets/transmission_password
     volumes:
       - /run/media/fabio/Configs/transmission:/config
-      - /run/media/fabio/Twins/Alpha:/run/media/fabio/Alpha
+      - /run/media/fabio/Alpha:/run/media/fabio/Alpha
       - /run/media/fabio/Nextcloud/data/fabio/files/Music:/home/fabio/Music
     ports:
       - 9091:9091

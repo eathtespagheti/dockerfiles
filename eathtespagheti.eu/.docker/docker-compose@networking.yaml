@@ -24,7 +24,3 @@ services:
       - /var/www/letsencrypt:/var/www/letsencrypt:ro
       - /var/cache/pacman/pkg:/pkgcache:ro
   
-  hoppscotch:
-    image: hoppscotch/hoppscotch:latest
-    ports:
-      - 10013:3000

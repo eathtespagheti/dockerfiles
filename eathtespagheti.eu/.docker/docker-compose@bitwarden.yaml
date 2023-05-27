@@ -35,17 +35,6 @@ services:
         #env_file:
         #- ../secrets/bitwarden.env
 
-  pgloader:
-    image: dimitri/pgloader:latest
-    volumes: 
-      - /run/media/fabio/Bitwarden/app:/data:ro
-      - testvolume:/import
-    depends_on: 
-      - bitwarden-postgres
-
-volumes:
-  testvolume:
-
 secrets:
   bitwarden_postgres_password:
     file: ../secrets/bitwarden_postgres_password

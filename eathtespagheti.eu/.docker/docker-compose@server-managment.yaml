@@ -17,16 +17,6 @@ services:
       - ZONE=eathtespagheti.eu
       - PROXIED=true
 
-  dashboard:
-    image: phntxx/dashboard
-    restart: unless-stopped
-    volumes:
-      - ../dashboard:/app/data:ro
-    ports:
-      - 10009:8080
-    depends_on: 
-      - nginx
-
   netdata:
     image: netdata/netdata
     hostname: BigChameleon

@@ -8,13 +8,3 @@ services:
       - nginx
     ports:
       - 1688:1688
-
-  picard:
-    image: mikenye/picard
-    ports:
-      - 5800:5800
-    environment:
-      - DISPLAY_HEIGHT=950
-    volumes:
-      - /run/media/fabio/Configs/picard:/config
-      - /run/media/fabio/Nextcloud/data/fabio/files/Music:/storage

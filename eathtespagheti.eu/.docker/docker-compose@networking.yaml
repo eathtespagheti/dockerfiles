@@ -6,21 +6,33 @@ services:
     image: internetsystemsconsortium/bind9:9.16
     hostname: bind9
     restart: always
-    volumes: 
+    volumes:
       - ../bind:/etc/bind:ro
-    ports: 
+    ports:
       - 53:53/udp
       - 53:53/tcp
       - 127.0.0.1:953:953/tcp
 
-  nginx:
-    hostname: nginx
-    image: nginx:alpine
-    restart: always
+  # nginx:
+  #   hostname: nginx
+  #   image: nginx:alpine
+  #   restart: always
+  #   network_mode: host
+  #   volumes:
+  #     - ../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - /etc/letsencrypt:/etc/letsencrypt:ro
+  #     - /var/www/letsencrypt:/var/www/letsencrypt:ro
+  #     - /var/cache/pacman/pkg:/pkgcache:ro
+
+  caddy:
+    image: caddy:alpine
     network_mode: host
+    restart: always
+    command: [ "caddy", "run", "--config", "/etc/caddy/Caddyfile" ]       
+    environment:
+      DOMAIN_NAME: $DOMAIN_NAME
     volumes:
-      - ../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - /etc/letsencrypt:/etc/letsencrypt:ro
-      - /var/www/letsencrypt:/var/www/letsencrypt:ro
-      - /var/cache/pacman/pkg:/pkgcache:ro
-  
+      - ../caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - $EXTERNAL_ETC_PATH/caddy/site:/srv
+      - $EXTERNAL_ETC_PATH/caddy/data:/data
+      - $EXTERNAL_ETC_PATH/caddy/config:/config

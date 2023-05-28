@@ -1,13 +1,16 @@
-{$DOMAIN_NAME} {
-	# Respond hello world to all requests
-	respond "Hello World"
-}
-
 routing.{$DOMAIN_NAME} {
 	reverse_proxy 192.168.1.1:80
 }
 
 secrets.{$DOMAIN_NAME} {
-	# Reverse proxy to bitwarden
 	reverse_proxy localhost:10006
+}
+
+cloud.{$DOMAIN_NAME} {
+	header Strict-Transport-Security "max-age=15552000; includeSubDomains"
+	reverse_proxy localhost:10000
+}
+
+{$DOMAIN_NAME} {
+	respond 404
 }

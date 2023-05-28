@@ -1,14 +1,13 @@
 version: "3.9"
 
 services:
-  # Databases
-  postgres:
-    image: postgres:13.4-alpine
+  postgres_nextcloud:
+    image: postgres:15-alpine
     restart: always
     env_file:
       - ../nextcloud/nextcloud.env
     volumes:
-      - /run/media/fabio/Configs/postgres:/var/lib/postgresql/data
+      - $SERVER_DISK_MOUNT_PATH/nextcloud/postgres:/var/lib/postgresql/data
     secrets:
       - postgres_password
 
@@ -19,42 +18,42 @@ services:
   smtp:
     image: namshi/smtp
     restart: always
-    environment: 
-      - CERTIFICATE_PATH=/etc/letsencrypt/live/eathtespagheti.eu/fullchain.pem
-      - KEY_PATH=/etc/letsencrypt/live/eathtespagheti.eu/privkey.pem
-      - MAILNAME=eathtespagheti.eu
+    environment:
+      CERTIFICATE_PATH: $EXTERNAL_ETC_PATH/caddy/data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/$DOMAIN_NAME/$DOMAIN_NAME.crt
+      KEY_PATH: $EXTERNAL_ETC_PATH/caddy/data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/$DOMAIN_NAME/$DOMAIN_NAME.key
+      MAILNAME: $DOMAIN_NAME
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
-  
+
   nextcloud:
-    hostname: xNextcloudx
-    image: eathtespagheti/nextcloud
+    image: nextcloud:$NEXTCLOUD_VERSION-apache
+    user: 1000:1000
     restart: always
     ports:
       - 10000:80
     env_file:
       - ../nextcloud/nextcloud.env
-    environment: 
-      - POSTGRES_HOST=postgres
+    environment:
+      - POSTGRES_HOST=postgres_nextcloud
       - NEXTCLOUD_ADMIN_PASSWORD_FILE=/run/secrets/nextcloud_admin_password
       - NEXTCLOUD_ADMIN_USER=fabio
       - REDIS_HOST=redis
-      - NEXTCLOUD_TRUSTED_DOMAINS=localhost 192.168.1.* cloud.eathtespagheti.eu direct.eathtespagheti.eu
-      - TRUSTED_PROXIES=192.168.1.* cloud.eathtespagheti.eu direct.eathtespagheti.eu
+      - NEXTCLOUD_TRUSTED_DOMAINS=cloud.$DOMAIN_NAME
+      - TRUSTED_PROXIES=192.168.1.* cloud.$DOMAIN_NAME
       - OVERWRITEPROTOCOL=https
       - SMTP_HOST=smtp
       - SMTP_AUTHTYPE=PLAIN
       - MAIL_FROM_ADDRESS=xnextcloudx
-      - MAIL_DOMAIN=eathtespagheti.eu
+      - MAIL_DOMAIN=$DOMAIN_NAME
       - PHP_MEMORY_LIMIT=1G
       - PHP_UPLOAD_LIMIT=16G
     volumes:
-      - /run/media/fabio/Nextcloud:/var/www/html
-      - /run/media/fabio/Alpha:/media/Alpha
+      - $SERVER_DISK_MOUNT_PATH/nextcloud/html:/var/www/html
+      - $MOUNT_PATH/Alpha:/media/Alpha
     depends_on:
-      - postgres
+      - postgres_nextcloud
       - redis
-      - nginx
+      - caddy
       - smtp
     secrets:
       - nextcloud_admin_password

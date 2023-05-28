@@ -1,13 +1,18 @@
-{$DOMAIN_NAME} {
-	# Respond hello world to all requests
-	respond "Hello World"
-}
-
-routing.{$DOMAIN_NAME} {
-	reverse_proxy 192.168.1.1:80
-}
+# routing.{$DOMAIN_NAME} {
+# 	reverse_proxy 192.168.1.1:80
+# }
 
 secrets.{$DOMAIN_NAME} {
-	# Reverse proxy to bitwarden
-	reverse_proxy localhost:10006
+	reverse_proxy bitwarden:80
+}
+
+cloud.{$DOMAIN_NAME} {
+	header Strict-Transport-Security "max-age=15552000; includeSubDomains"
+	redir /.well-known/carddav /remote.php/dav 301
+	redir /.well-known/caldav /remote.php/dav 301
+	reverse_proxy nextcloud:80
+}
+
+{$DOMAIN_NAME} {
+	respond 404
 }

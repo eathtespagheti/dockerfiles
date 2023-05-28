@@ -26,9 +26,11 @@ services:
 
   caddy:
     image: caddy:alpine
-    network_mode: host
     restart: always
-    command: [ "caddy", "run", "--config", "/etc/caddy/Caddyfile" ]       
+    command: [ "caddy", "run", "--config", "/etc/caddy/Caddyfile" ] 
+    ports:
+      - 80:80
+      - 443:443      
     environment:
       DOMAIN_NAME: $DOMAIN_NAME
     volumes:

@@ -20,8 +20,6 @@ services:
     image: vaultwarden/server:alpine
     user: 1000:1000
     restart: always
-    ports:
-      - 10006:80
     volumes: 
       - /run/media/fabio/Bitwarden/app:/data
     depends_on: 

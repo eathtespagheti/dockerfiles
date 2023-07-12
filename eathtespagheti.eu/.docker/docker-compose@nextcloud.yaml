@@ -23,7 +23,7 @@ services:
       KEY_PATH: $EXTERNAL_ETC_PATH/caddy/data/caddy/certificates/acme-v02.api.letsencrypt.org-directory/$DOMAIN_NAME/$DOMAIN_NAME.key
       MAILNAME: $DOMAIN_NAME
     volumes:
-      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - $EXTERNAL_ETC_PATH/caddy/data/caddy/certificates:$EXTERNAL_ETC_PATH/caddy/data/caddy/certificates:ro
 
   nextcloud:
     image: nextcloud:$NEXTCLOUD_VERSION-apache

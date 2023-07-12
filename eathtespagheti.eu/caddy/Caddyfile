@@ -13,6 +13,10 @@ cloud.{$DOMAIN_NAME} {
 	reverse_proxy nextcloud:80
 }
 
+videos.{$DOMAIN_NAME} {
+	reverse_proxy jellyfin:80
+}
+
 {$DOMAIN_NAME} {
 	respond 404
 }

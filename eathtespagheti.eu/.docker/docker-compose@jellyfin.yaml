@@ -3,16 +3,14 @@ version: "3.9"
 services:
 
   jellyfin:
-    hostname: Jellyfin
     privileged: true
     restart: unless-stopped
     image: eathtespagheti/jellyfin
-    network_mode: host
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Amsterdam
-      - JELLYFIN_PublishedServerUrl=https://videos.eathtespagheti.eu
+      - JELLYFIN_PublishedServerUrl=https://videos.$DOMAIN_NAME
       - LIBVA_DRIVER_NAME=iHD
     group_add:
       - "989" # Render group for HW Acceleration
@@ -25,11 +23,9 @@ services:
       - /run/media/fabio/Alpha/Film:/media
       - /run/media/fabio/Alpha/SerieTV:/media2
       - /run/media/fabio/Alpha/torrents:/media3
-      - /run/media/fabio/Nextcloud/data/fabio/files/Videos/Hero 8:/media4
-      - $HOME/Music:/music
       - /tmp/jellyfin:/config/data/transcodes
     depends_on: 
-      - nginx
+      - caddy
 
 volumes: 
   jellyfinCache:

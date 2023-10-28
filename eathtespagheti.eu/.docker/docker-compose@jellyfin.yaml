@@ -20,9 +20,7 @@ services:
     volumes:
       - /run/media/fabio/Jellyfin:/config
       - jellyfinCache:/cache
-      - /run/media/fabio/Alpha/Film:/media
-      - /run/media/fabio/Alpha/SerieTV:/media2
-      - /run/media/fabio/Alpha/torrents:/media3
+      - /run/media/fabio/smol:/media/smol
       - /tmp/jellyfin:/config/data/transcodes
     depends_on: 
       - caddy

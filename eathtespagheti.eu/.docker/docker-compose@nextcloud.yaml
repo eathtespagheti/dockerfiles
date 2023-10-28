@@ -48,7 +48,6 @@ services:
     volumes:
       - $SERVER_DISK_MOUNT_PATH/nextcloud/html:/var/www/html
       - $SERVER_DISK_MOUNT_PATH/nextcloud/redis-session.ini:/usr/local/etc/php/conf.d/redis-session.ini
-      - $MOUNT_PATH/Alpha:/media/Alpha
     depends_on:
       - postgres_nextcloud
       - redis

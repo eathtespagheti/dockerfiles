@@ -14,6 +14,9 @@ $TTL	86400
 ; Name servers
 			IN NS		ns1.eathtespagheti.eu.
 
-ns1.eathtespagheti.eu.	IN A		192.168.1.127
-eathtespagheti.eu.	    IN A		192.168.1.127
-*.eathtespagheti.eu.	IN CNAME	eathtespagheti.eu.
+ns1.eathtespagheti.eu.	        IN  A       192.168.1.127
+eathtespagheti.eu.	            IN  A       192.168.1.127
+bigchameleon.eathtespagheti.eu. IN  A       192.168.1.105
+8boi.eathtespagheti.eu.         IN  A       192.168.1.110
+nimbus.eathtespagheti.eu.       IN  A       192.168.1.127
+*.eathtespagheti.eu.	        IN  CNAME	eathtespagheti.eu.
